@@ -1,0 +1,12 @@
+__________________________________________________________________________
+Nume  |Prenume | Data nasterii  |      Adresa Strada |   Nr  |  City  | Country 
+__________________________________________________________________________
+Yvonne | Tracea | 11/26/2015 | Gugului | 68 | Lapus | Romania
+Gogo | Hoblesteanu | 6/17/1983 | Traianului | 34 | Mizil | Romania 
+Ninutza | Juravle | 6/4/1991 | Dacilor | 34 | Reghin | Romania 
+Marghioala | Boanca | 21/11/1939 | Clubului | 23 | Hunedoara | Romania 
+Monica | Borcila | 21/11/1993 | Chiorilor | 22 | Mizil | Romania 
+Munti | Borcila | 21/11/1993 | Chiorilor | 22 | Mizil | Romania
+Virgilius | Turcalete | 21/11/1981 | Dorului | 13 | Huedin | Romania
+Niculita | Moldoveanu | 02/03/1901 | Covoarelor | 15 | Cisnadie | Romania 
+Relu | Fenechiu | 11/25/2015 | Florilor | 12 | Iasi | Romania
