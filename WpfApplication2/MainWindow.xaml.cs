@@ -806,6 +806,14 @@ namespace WpfApplication2
         {
             textBlock_all_appointments.Text = "----am sters afisajul------baza de date e nealterata--------";
         }
+
+        private void arata_graphic(object sender, RoutedEventArgs e)
+        {
+            
+            int []years = new int[] { 100, 222, 333, 234, 124, 678, 345 };
+            int []appointments = new int[] { 100, 222, 333, 234, 124, 678, 345 };
+            show_graphic_2D_works_ok(years, appointments);
+        }
     }
 }
 

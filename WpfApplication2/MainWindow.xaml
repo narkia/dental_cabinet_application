@@ -556,6 +556,7 @@
                             <Button Content="show patient with max appointmts" Height="26" HorizontalAlignment="Right" Margin="0,262,13,0" Name="button24" VerticalAlignment="Top" Width="188" />
                             <Button Content="show patient with max problems" Height="26" HorizontalAlignment="Right" Margin="0,294,13,0" Name="button25" VerticalAlignment="Top" Width="188" />
                             <Button Content="show patient with maxim costs" Height="26" HorizontalAlignment="Right" Margin="0,326,13,0" Name="button26" VerticalAlignment="Top" Width="188" />
+                            <Button Name="button271" Click="arata_graphic" Content="arata" HorizontalAlignment="Left" Margin="109,357,0,0" VerticalAlignment="Top" Width="188"/>
                         </Grid>
                     </GroupBox>
                     <Canvas Name="statistics_graph" HorizontalAlignment="Left" Height="437" Margin="363,54,0,0" VerticalAlignment="Top" Width="666" Background="Beige"/>
