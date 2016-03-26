@@ -24,7 +24,8 @@ namespace WpfApplication2
             this.country = country;
         }
     }
-
+    //nars
+    //aici as vrea
     class Patient
     {
         string path = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyTest.txt";
