@@ -92,6 +92,7 @@
     <Compile Include="Appointments.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="Medication.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="Statistics.xaml.cs">
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>

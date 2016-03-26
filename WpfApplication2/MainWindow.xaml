@@ -558,6 +558,7 @@
                             <Button Content="show patient with maxim costs" Height="26" HorizontalAlignment="Right" Margin="0,326,13,0" Name="button26" VerticalAlignment="Top" Width="188" />
                         </Grid>
                     </GroupBox>
+                    <Canvas Name="statistics_graph" HorizontalAlignment="Left" Height="437" Margin="363,54,0,0" VerticalAlignment="Top" Width="666" Background="Beige"/>
                 </Grid>
             </TabItem>
 

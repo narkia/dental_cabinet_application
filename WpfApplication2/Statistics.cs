@@ -102,6 +102,8 @@ namespace WpfApplication2
             }
         }
 
+        //nars
+
         public void delete_statistics_graphic()
         {
             statistics_graph.Children.Clear();
