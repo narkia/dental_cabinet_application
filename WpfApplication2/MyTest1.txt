@@ -1,1 +1,4 @@
-qwewqeqweqweqwe
+Medication name   Provider  Manufacturing date   Aquisition date  Quantity  Cost 
+av10.10.2015 00:00:0017.10.2015 00:00:0023234
+aaantibiotice10.10.2015 00:00:0017.10.2015 00:00:002424
+Prenume Nume--> birth dd.mm.yyyy adresa Str,nr,Oras,Tara 

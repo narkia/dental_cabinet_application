@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Resources;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 
 namespace WpfApplication2
@@ -59,6 +60,8 @@ namespace WpfApplication2
         {
             int flagu = 0;
                                    
+            //string text = textbox_1.Text.ToString();
+            int i = 0;
             flagu++;
 
             add_patient_to_file();
@@ -523,6 +526,10 @@ namespace WpfApplication2
             return b;
 
         }
+        private void delete_statistics_graphics_button(object sender, RoutedEventArgs e)
+        {
+            delete_statistics_graphic();
+        }
 
         private void click_busiest_day_of_the_year(object sender, RoutedEventArgs e)
         {
@@ -806,13 +813,29 @@ namespace WpfApplication2
         {
             textBlock_all_appointments.Text = "----am sters afisajul------baza de date e nealterata--------";
         }
-
-        private void arata_graphic(object sender, RoutedEventArgs e)
+        private void graphic_2D_works_ok(object sender, RoutedEventArgs e)
         {
-            
-            int []years = new int[] { 100, 222, 333, 234, 124, 678, 345 };
-            int []appointments = new int[] { 100, 222, 333, 234, 124, 678, 345 };
+            var years = get_vector_years();
+            var appointments = get_vector_appointments();
             show_graphic_2D_works_ok(years, appointments);
+        }
+
+        
+
+        
+        private void show_graph_nr_of_appointments_per_month(object sender, RoutedEventArgs e)
+        {
+            var years = get_vector_years();
+            //var appointments = get_vector_appointments_per_month();//asta merge
+            var appointments_matrix = get_matrix_appointments_per_month();
+            //show_graphic_2D_works_appointments_per_months(years, appointments);
+            //show_graphic_2D_works_ok_matrix(years, appointments_matrix);
+            show_graphic_2D_works_appointments_per_months_matrix(years, appointments_matrix);
+        }
+
+        private void delete_graphic(object sender, RoutedEventArgs e)
+        {
+            delete_statistics_graphic();
         }
     }
 }

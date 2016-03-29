@@ -14,6 +14,8 @@ namespace WpfApplication2
         public DateTime date_of_manufacturing { get; set; }
         public DateTime date_of_aquisition { get; set; }
 
+        /* constants - not member of Medication class */
+        public static readonly DateTime DefaultDate = new DateTime(2015, 1, 1);
         public Medication(string medication_name, string medication_provider, int quantity, int cost, DateTime date_of_manufacturing, DateTime date_of_aquisition)
         {
             this.medication_name = medication_name;
@@ -25,7 +27,7 @@ namespace WpfApplication2
         }
 
         /* constants - not member of Medication class */
-        public static readonly DateTime DefaultDate = new DateTime(2015, 1, 1);
+        //public static readonly DateTime DefaultDate = new DateTime(2015, 1, 1);
 
         public bool Medication_verify_price()
         {

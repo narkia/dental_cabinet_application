@@ -402,7 +402,7 @@ namespace WpfApplication2
         *************************************************************************************/
         private int func_check_appointment_input_format_timeframe_in_textboxes()
         {
-            int result = 0;
+            int result = 0, i = 0;
             int result_hour = 0, result_delimiter = 0, result_minutes = 0;
 
             // check textboxes for correct format .etc..
@@ -454,7 +454,7 @@ namespace WpfApplication2
         *************************************************************************************/
         private int func_check_appointment_input_format_date_in_textboxes()
         {
-            int result = 0;
+            int result = 0, i = 0;
             int result_day = 0, result_delimiter = 0, result_months = 0, result_years = 0;
 
             // check textboxes for correct format .etc..
