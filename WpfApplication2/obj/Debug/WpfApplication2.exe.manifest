@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8VKefy3LH1557b/OVLescx5mwh8uc69UBxQ8Qzi+18U=</dsig:DigestValue>
+        <dsig:DigestValue>vycmvPx0WhCxOgsAlMtUisjCIfN1N/pf4J+ZInYp7P8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -61,6 +61,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>OuS2mH3PGaDYBVG74ciK1ErgjpJpFuzshjgqie9Pbv8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="WpfApplication2.exe.config" size="184">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>FqWy0dfMmRS85zkU1NlW07p6LsNOPUHodvLiZcFdgJY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

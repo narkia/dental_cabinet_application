@@ -38,3 +38,4 @@ C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabin
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\WpfApplication2.csproj.GenerateResource.Cache
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\WpfApplication2.exe.manifest
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\WpfApplication2.application
+C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\bin\Debug\WpfApplication2.exe.config
