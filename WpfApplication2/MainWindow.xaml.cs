@@ -837,6 +837,173 @@ namespace WpfApplication2
         {
             delete_statistics_graphic();
         }
+        
+        
+        private void Pick_start_hour_appointment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // ... Get the ComboBox.
+            var comboBox = sender as ComboBox;
+
+            // ... Set SelectedItem as Window Title.
+            string value = comboBox.SelectedItem as string;
+            this.Title = "Selected: " + value;
+        }
+
+        private void Pick_start_hour_appointment_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+            data.Add("06:00");
+            data.Add("06:15");
+            data.Add("06:30");
+            data.Add("06:45");
+
+            data.Add("07:00");
+            data.Add("07:15");
+            data.Add("07:30");
+            data.Add("07:45");
+
+            data.Add("08:00");
+            data.Add("08:15");
+            data.Add("08:30");
+            data.Add("08:45");
+
+            data.Add("09:00");
+            data.Add("09:15");
+            data.Add("09:30");
+            data.Add("09:45");
+
+            data.Add("10:00");
+            data.Add("10:15");
+            data.Add("10:30");
+            data.Add("10:45");
+            
+            data.Add("11:00");
+            data.Add("11:15");
+            data.Add("11:30");
+            data.Add("11:45");
+
+            data.Add("12:00");
+            data.Add("12:15");
+            data.Add("12:30");
+            data.Add("12:45");
+
+            data.Add("13:00");
+            data.Add("13:15");
+            data.Add("13:30");
+            data.Add("13:45");
+
+            data.Add("14:00");
+            data.Add("14:15");
+            data.Add("14:30");
+            data.Add("14:45");
+
+            data.Add("15:00");
+            data.Add("15:15");
+            data.Add("15:30");
+            data.Add("15:45");
+
+            data.Add("16:00");
+            data.Add("16:15");
+            data.Add("16:30");
+            data.Add("16:45");
+
+            data.Add("17:00");
+            data.Add("17:15");
+            data.Add("17:30");
+            data.Add("17:45");
+
+            data.Add("18:00");
+            data.Add("18:15");
+            data.Add("18:30");
+            data.Add("18:45");
+
+            data.Add("19:00");
+            data.Add("19:15");
+            data.Add("19:30");
+            data.Add("19:45");
+
+            data.Add("20:00");
+            data.Add("20:15");
+            data.Add("20:30");
+            data.Add("20:45");
+
+            data.Add("21:00");
+            data.Add("21:15");
+            data.Add("21:30");
+            data.Add("21:45");
+
+            data.Add("22:00");
+            data.Add("22:15");
+            data.Add("22:30");
+            data.Add("22:45");
+
+            data.Add("23:00");
+            data.Add("23:15");
+            data.Add("23:30");
+            data.Add("23:45");
+
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 9;
+                        
+        }
+
+        private void button_set_new_treatment(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       /* private void button_set_new_appointments(object sender, RoutedEventArgs e)
+        {
+            DateTime ee, f;
+            string a = "", b = "";
+            int c = 0;
+            int d = 0;
+            mesaj = "->apasat add appointment button<-";
+            action_window_update(mesaj);
+
+            var rett1 = func_textbox_check_text_no_empty(textBox_appointments_patient);
+            var rett2 = func_textbox_check_text_no_empty(textbox_firstname_appointment);
+            var rett3 = func_textbox_check_text_no_empty(textBox_timeframe_stop_appointment);
+            var rett4 = func_textbox_check_text_no_empty(textBox_timeframe_start_appointment);
+            var rett5 = func_datepicker_check_text_no_empty(datepicker_date_appointment);
+            
+            rett1 = rett1 | rett2;
+            rett1 = rett1 | rett3;
+            rett1 = rett1 | rett4;
+            rett1 = rett1 | rett5;
+            
+            var rett7 = rett1;//use this to know if all the textboxes are filled with values.. so the textboxes are not empty
+
+            if (rett5 == false)
+            {
+                a = medication_name_textBox.Text.ToString();
+                b = medication_provider_textBox.Text.ToString();
+                c = Convert.ToInt32(medication_quantity_textbox.Text);
+                d = Convert.ToInt32(medication_cost_textBox.Text);
+            }
+
+            if (func_datepicker_check_text_no_empty(datepicker_date_appointment) == false)
+            {
+                ee = Convert.ToDateTime(medication_manufacturing_date_datepicker.Text);
+            }
+            else
+            {
+                //MessageBox.Show("You must enter a valid date.. The manufacturing date textbox is empty OR the medication name/provider/cost/quantity is not set!");
+                ee = DateTime.Now;
+            }
+
+            if (func_datepicker_check_text_no_empty(medication_aquisition_date_datepicker) == false)
+            {
+                f = Convert.ToDateTime(medication_aquisition_date_datepicker.Text);
+            }
+            else
+            {
+                //MessageBox.Show("You must enter a valid date of aquisition..the aquisition date textbox is empty!");
+                f = DateTime.Now;
+            }
+                               
+        }*/
     }
 }
 
