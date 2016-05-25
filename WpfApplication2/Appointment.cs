@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Resources;
-using System.Windows.Media.Imaging;
+
 
 namespace WpfApplication2
 {
