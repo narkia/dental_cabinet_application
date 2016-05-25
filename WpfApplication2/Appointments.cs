@@ -51,12 +51,13 @@ namespace WpfApplication2
                 string allText = createText + createText1 + createText2;
                 File.WriteAllText(path1, allText);
             }
-            string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + textBox_date_appointment.Text.ToString() + "   |" + textBox_timeframe_start_appointment.Text.ToString() + " --> " + textBox_timeframe_stop_appointment.Text.ToString() + "|" + Environment.NewLine;
+            string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() /* datepicker_date_appointment */ + "   |" + textBox_timeframe_start_appointment.Text.ToString() + " --> " + textBox_timeframe_stop_appointment.Text.ToString() + "|" + Environment.NewLine;
             string name_patient = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString();
 
             var start_time = textBox_timeframe_start_appointment.Text.ToString();
             var stop_time = textBox_timeframe_stop_appointment.Text.ToString();
-            var data_appointment = textBox_date_appointment.Text.ToString();
+            var data_appointment = datepicker_date_appointment.Text.ToString(); //datepicker_date_appointment
+
 
             var result_check_timeframe_textboxes = func_check_appointment_input_format_timeframe_in_textboxes();
             //var result_check_date_textbox = func_check_appointment_input_format_date_in_textboxes();
@@ -454,11 +455,13 @@ namespace WpfApplication2
         *************************************************************************************/
         private int func_check_appointment_input_format_date_in_textboxes()
         {
-            int result = 0, i = 0;
+            int result = 0;
             int result_day = 0, result_delimiter = 0, result_months = 0, result_years = 0;
 
             // check textboxes for correct format .etc..
-            var date_char_array = textBox_date_appointment.Text.ToCharArray();
+            var date_char_array = datepicker_date_appointment.Text.ToCharArray();
+            //datepicker_date_appointment
+
 
             // date format check
             int zi_calc = (int)Char.GetNumericValue(date_char_array[0]) * 10;
