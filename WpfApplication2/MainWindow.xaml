@@ -255,26 +255,84 @@
                 <Grid Background="#FF936870">
                     <Label Content="pagina de programari" Height="25" HorizontalAlignment="Left" Margin="5,3,0,0" Name="label_programari" VerticalAlignment="Top" Width="200" />
                     <GroupBox Header="add appointment" Margin="44,33,741,685">
-                        <Grid Height="115" Width="265">
-                            <Button Content="set appointments for patient" Height="26" HorizontalAlignment="Left" Margin="6,83,0,0" Name="button_appointments_today" VerticalAlignment="Top" Width="213" Click="button_set_new_appointments" />
-                            <TextBox Text="Last name" Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox_appointments_patient" VerticalAlignment="Top" Width="97" />
-                            <TextBox Text="dd.mm.yyyy" Height="32" HorizontalAlignment="Left" Margin="6,44,0,0" Name="textBox_date_appointment" VerticalAlignment="Top" Width="97" />
-                            <TextBox Text="hh:mm" Height="32" Margin="165,44,46,0" Name="textBox_timeframe_start_appointment" VerticalAlignment="Top">
+                        <GroupBox Header="add appointment" Margin="24,33,740,606">
+                        <Grid Height="115" Margin="19,38,-2,0" HorizontalAlignment="Left" Width="265" VerticalAlignment="Top">
+
+                            <Grid.Resources>
+                                <VisualBrush x:Key="Appointment_last_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Last Name" Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+
+                                <VisualBrush x:Key="Appointment_first_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="First Name " Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="115*"/>
+                                <RowDefinition Height="33*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="set appointments for patient" Height="32" Margin="17,0,0,-24" Name="button_appointments_today" VerticalAlignment="Bottom" Click="button_set_new_appointments" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="152" Grid.Row="1" >
+                                <Button.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="0.043"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Button.RenderTransform>
+                            </Button>
+                            <TextBox  Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox_appointments_patient" VerticalAlignment="Top" Width="106" >
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=textBox_appointments_patient,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource Appointment_last_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+
+                            <TextBox Text="hh:mm" Height="32" Margin="0,44,33,0" Name="textBox_timeframe_start_appointment" VerticalAlignment="Top" HorizontalAlignment="Right" Width="46">
                                 <TextBox.ToolTip>
                                     <ToolTip>
                                         ! start time of appointment in following format--> hh:mm !
                                     </ToolTip>
                                 </TextBox.ToolTip>
                             </TextBox>
-                            <TextBox Text="First name" Height="32" HorizontalAlignment="Left" Margin="109,6,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" />
-                            <TextBox Height="32" HorizontalAlignment="Right" Margin="0,44,106,0" Name="textBox_timeframe_stop_appointment" Text="hh:mm" VerticalAlignment="Top" Width="50" >
+                            
+                            <TextBox Height="32" HorizontalAlignment="Left" Margin="117,6,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" >
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=textbox_firstname_appointment,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource Appointment_first_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <TextBox Height="32" HorizontalAlignment="Left" Margin="134,43,0,0" Name="textBox_timeframe_stop_appointment" Text="hh:mm" VerticalAlignment="Top" Width="47" >
                                 <TextBox.ToolTip>
                                     <ToolTip>
                                         ! end time of appointment in following format--> hh:mm !
                                     </ToolTip>
                                 </TextBox.ToolTip>
                             </TextBox>
-                        </Grid>
+                            <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="170,76,0,0" VerticalAlignment="Top" Width="62" Grid.RowSpan="2" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" />
+                                
                     </GroupBox>
 
                     <GroupBox Header="show info from database" Margin="438,164,422,554">
