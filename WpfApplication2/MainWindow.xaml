@@ -254,8 +254,8 @@
             <TabItem Name="tab3" Header="Appointments" TabIndex="3" MouseUp="appointments_tab_mouseup">
                 <Grid Background="#FF936870">
                     <Label Content="pagina de programari" Height="25" HorizontalAlignment="Left" Margin="5,3,0,0" Name="label_programari" VerticalAlignment="Top" Width="200" />
-                    
-                    <GroupBox Header="add appointment" Margin="24,33,740,664">
+
+                    <GroupBox Header="add appointment" Margin="24,33,740,650">
                         <Grid Height="115" Margin="19,38,-2,0" HorizontalAlignment="Left" Width="265" VerticalAlignment="Top">
 
                             <Grid.Resources>
@@ -280,7 +280,7 @@
                                 <RowDefinition Height="33*"/>
                             </Grid.RowDefinitions>
 
-                                                        <Button Content="set appointments for patient" Height="25" Margin="3,0,0,2" Name="button_appointments_today" VerticalAlignment="Bottom" Click="button_set_new_appointments" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="161" >
+                            <Button Content="set appointments for patient" Height="25" Margin="1,0,0,3" Name="button_appointments_today" VerticalAlignment="Bottom" Click="button_set_new_appointments" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="161" Grid.RowSpan="2" >
                                 <Button.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -302,15 +302,14 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
+                            <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="119" Height="33">
                                 <DatePicker.ToolTip>
                                     <ToolTip>
                                         ! choose a day for appointment !
                                     </ToolTip>
                                 </DatePicker.ToolTip>
-                               
                             </DatePicker>
-                            
+
                             <TextBox Height="28" HorizontalAlignment="Left" Margin="103,-13,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
@@ -323,21 +322,21 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="124,24,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" >
+                            <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="124,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" >
                                 <ComboBox.ToolTip>
                                     <ToolTip>
                                         ! start time of appointment in following format--> hh:mm !
                                     </ToolTip>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <ComboBox x:Name="Pick_stop_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="191,24,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_stop_hour_appointment_Loaded" SelectionChanged="Pick_stop_hour_appointment_SelectionChanged" >
+                            <ComboBox x:Name="Pick_stop_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="191,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_stop_hour_appointment_Loaded" SelectionChanged="Pick_stop_hour_appointment_SelectionChanged" >
                                 <ComboBox.ToolTip>
                                     <ToolTip>
                                         ! stop time of appointment in following format--> hh:mm !
-                                    </ToolTip> 
+                                    </ToolTip>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                        </Grid>  
+                        </Grid>
                     </GroupBox>
 
                     <GroupBox Header="show info from database" Margin="438,164,422,554">
@@ -357,12 +356,12 @@
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="100,44,0,0" Name="textBox18" Text="hh:mm" VerticalAlignment="Top" Width="50" />
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="112,6,0,0" Name="textBox19" Text="First name" VerticalAlignment="Top" Width="100" />
                         </Grid>
-                        
+
                     </GroupBox>
-                     <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="168,108,0,0" VerticalAlignment="Top" Width="68"/>
+                    <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="168,108,0,0" VerticalAlignment="Top" Width="68"/>
                     <Label Content="Stop time" HorizontalAlignment="Left" Height="29" Margin="236,108,0,0" VerticalAlignment="Top" Width="73"/>
-                    <Label Content="App. day" HorizontalAlignment="Left" Height="29" Margin="51,108,0,0" VerticalAlignment="Top" Width="73"/>
-  
+                    <Label Content="App. day" HorizontalAlignment="Left" Height="29" Margin="47,108,0,0" VerticalAlignment="Top" Width="73"/>
+
                 </Grid>
             </TabItem>
             <TabItem Name="tab4" Header="Treatments" TabIndex="4" MouseUp="treatments_tab_mouseup" >
@@ -370,7 +369,7 @@
                     <Label Content="pagina cu tratamente" Height="25" HorizontalAlignment="Left" Margin="5,3,0,0" Name="label_tratamente" VerticalAlignment="Top" Width="200" />
                     <GroupBox Header="add treatment" Margin="22,53,764,663">
                         <Grid Height="115" Width="265">
-                                                        <Button Click="button_set_new_treatment" Content="set appointments for patient" Height="26" HorizontalAlignment="Left" Margin="6,83,0,0" Name="button8" VerticalAlignment="Top" Width="213" />
+                            <Button Click="button_set_new_treatment" Content="set appointments for patient" Height="26" HorizontalAlignment="Left" Margin="6,83,0,0" Name="button8" VerticalAlignment="Top" Width="213" />
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox2" Text="Last name" VerticalAlignment="Top" Width="97" />
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="6,44,0,0" Name="textBox3" Text="dd.mm.yyyy" VerticalAlignment="Top" Width="97" />
                             <TextBox Height="32" Margin="165,44,46,0" Name="textBox4" Text="hh:mm" VerticalAlignment="Top">
