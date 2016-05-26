@@ -73,12 +73,15 @@ namespace WpfApplication2
                     if (res == 0)
                     {
                         File.AppendAllText(path1, appendText);
-                        MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
+                                               //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
+                        MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!","Correct!");
+
                     }
                     else if (res == 1)
                     {
                         string all_appointments_on_selected_date = func_get_all_lines_with_today_date(data_appointment);
-                        MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + data_appointment + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!");
+                        //MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + data_appointment + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!");
+                        MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + data_appointment + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!", "Attention!");
                     }
                     else
                     {
@@ -87,13 +90,14 @@ namespace WpfApplication2
                 }
                 else //if the appointment date is in a day before today, we cannot set an appointment
                 {
-                   MessageBox.Show("Sorry, the appointment date * " + data_appointment + " " + start_time + " * you entered is in the past, so we cannot travel in time to set an appointment. Here we are in real life not in Star Trek! Please enter a valid appointment!");
+                    MessageBox.Show("Sorry, the appointment date * " + data_appointment + " " + start_time + " * you entered is in the past, so we cannot travel in time to set an appointment. Here we are in real life not in Star Trek! Please enter a valid appointment!", "Attention!");
                 }
             }
             else
             {
-                MessageBox.Show("Names shall contain only letters! This appointment cannot be set because of incorrect format of names.");
-           }
+                MessageBox.Show("Names shall contain only letters! This appointment cannot be set because of incorrect format of names.", "Attention!");
+            }
+
 
         }
 
@@ -193,7 +197,7 @@ namespace WpfApplication2
         * * Description:       extract the start time of an appointment from a line.  
         * ***********************************************************************************
         *************************************************************************************/
-        private string func_extract_start_time_of_appointment(string line)
+        public string func_extract_start_time_of_appointment(string line)
         {
             string start_time = "";
             int i = 0, j = 0;// k = 0;
@@ -234,7 +238,7 @@ namespace WpfApplication2
         * * Description:       extract the stop time of an appointment from a line.  
         * ***********************************************************************************
         *************************************************************************************/
-        private string func_extract_stop_time_of_appointment(string line)
+        public string func_extract_stop_time_of_appointment(string line)
         {
             string start_time = "";
             int i = 0, j = 0;// k = 0;
