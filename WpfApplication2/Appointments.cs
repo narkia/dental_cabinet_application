@@ -51,21 +51,20 @@ namespace WpfApplication2
                 string allText = createText + createText1 + createText2;
                 File.WriteAllText(path1, allText);
             }
-            string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() /* datepicker_date_appointment */ + "   |" + textBox_timeframe_start_appointment.Text.ToString() + " --> " + textBox_timeframe_stop_appointment.Text.ToString() + "|" + Environment.NewLine;
+            string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() /* datepicker_date_appointment */ + "   |" + /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToString() /* Pick_stop_hour_appointment */ + " --> " + /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToString() /* Pick_stop_hour_appointment */ + "|" + Environment.NewLine;
             string name_patient = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString();
 
-            var start_time = textBox_timeframe_start_appointment.Text.ToString();
-            var stop_time = textBox_timeframe_stop_appointment.Text.ToString();
+            var start_time = /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToString();//Pick_start_hour_appointment
+            var stop_time = /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToString();//Pick_stop_hour_appointment
             var data_appointment = datepicker_date_appointment.Text.ToString(); //datepicker_date_appointment
 
-
             var result_check_timeframe_textboxes = func_check_appointment_input_format_timeframe_in_textboxes();
-            //var result_check_date_textbox = func_check_appointment_input_format_date_in_textboxes();
-            // var result_check_names_textboxes = func_check_appointment_input_format_names_in_textboxes();
+            var result_check_names_textboxes = func_check_appointment_input_format_names_in_textboxes();
 
             //verify if the datas inserted in textboxes is as expected: date dd.mm.yyyy; names only letters; start hour and stop hour in format --> hh:mm
-            if ((result_check_timeframe_textboxes == 1)/* && (result_check_date_textbox == 1) /*&& (result_check_names_textboxes == 1))*/)
+            if ((result_check_timeframe_textboxes == 1)/* && (result_check_date_textbox == 1)*/ && (result_check_names_textboxes == 0))
             {
+  
                 //in case the appoinment date is today or a day after today - the processing is done
                 var possible_appointment = func_verify_if_possible_appointment_date(data_appointment, start_time);
                 if (possible_appointment == 0)//if the appoinment date is today or a day after today - the processing is done
@@ -88,13 +87,13 @@ namespace WpfApplication2
                 }
                 else //if the appointment date is in a day before today, we cannot set an appointment
                 {
-                    MessageBox.Show("Sorry, the appointment date * " + data_appointment + " " + start_time + " * you entered is in the past, so we cannot travel in time to set an appointment. Here we are in real life not in Star Trek! Please be serious buddy!");
+                   MessageBox.Show("Sorry, the appointment date * " + data_appointment + " " + start_time + " * you entered is in the past, so we cannot travel in time to set an appointment. Here we are in real life not in Star Trek! Please enter a valid appointment!");
                 }
             }
             else
             {
-                MessageBox.Show("Please enter valid formats in textboxes for date AND names AND timeframes! This appointment cannot be set because of incorrect format of the datas. Thanks!");
-            }
+                MessageBox.Show("Names shall contain only letters! This appointment cannot be set because of incorrect format of names.");
+           }
 
         }
 
@@ -403,12 +402,12 @@ namespace WpfApplication2
         *************************************************************************************/
         private int func_check_appointment_input_format_timeframe_in_textboxes()
         {
-            int result = 0, i = 0;
+            int result = 0;
             int result_hour = 0, result_delimiter = 0, result_minutes = 0;
 
             // check textboxes for correct format .etc..
-            var start_time_char_array = textBox_timeframe_start_appointment.Text.ToCharArray();
-            var stop_time_char_array = textBox_timeframe_stop_appointment.Text.ToCharArray();
+            var start_time_char_array = /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToCharArray();//Pick_start_hour_appointment
+            var stop_time_char_array = /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToCharArray();//Pick_stop_hour_appointment
 
             // timeframe format check
             int ora_calc = (int)Char.GetNumericValue(start_time_char_array[0]) * 10;
@@ -532,7 +531,7 @@ namespace WpfApplication2
             var firstname_char_array = textbox_firstname_appointment.Text.ToCharArray();
 
             // lastname format check
-            for (i = 0; i <= lastname_char_array.Length; i++)
+                 for (i = 0; i < lastname_char_array.Length; i++)
             {
                 if (!Char.IsLetter(lastname_char_array[i]))
                 {
@@ -542,7 +541,7 @@ namespace WpfApplication2
             }
 
             // firstname format check
-            for (i = 0; i <= firstname_char_array.Length; i++)
+            for (i = 0; i < firstname_char_array.Length; i++)
             {
                 if (!Char.IsLetter(firstname_char_array[i]))
                 {
@@ -551,7 +550,7 @@ namespace WpfApplication2
                 }
             }
 
-            if ((result_lastname == 1) && (result_firstname == 1))
+            if ((result_lastname == 1) || (result_firstname == 1))
             {
                 result = 1;
             }
