@@ -34,7 +34,7 @@ namespace WpfApplication2
         }
 
         string path = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyTest.txt";
-        string path1 = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyAppointmentList.txt";
+        string path1 = @"MyAppointmentList.txt";
         string path_medications = @"MyMedicationList1.txt";
         string mesaj = " ";
         string search_text = "";
@@ -61,7 +61,7 @@ namespace WpfApplication2
             int flagu = 0;
                                    
             //string text = textbox_1.Text.ToString();
-            int i = 0;
+    
             flagu++;
 
             add_patient_to_file();
@@ -842,16 +842,23 @@ namespace WpfApplication2
         private void Pick_start_hour_appointment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // ... Get the ComboBox.
-            var comboBox = sender as ComboBox;
+            //var comboBox = sender as ComboBox;
 
             // ... Set SelectedItem as Window Title.
-            string value = comboBox.SelectedItem as string;
-            this.Title = "Selected: " + value;
+            //string value = comboBox.SelectedItem as string;
+            //this.Title = "Selected: " + value;
         }
 
         private void Pick_start_hour_appointment_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> data = new List<string>();
+            
+            
+            //as vrea aici sa apara doar orele disponibile din start.. cumva intervalele orare care nu mai sunt disponibile
+            //sa nu mai apara din start in lista
+
+
+            
             data.Add("06:00");
             data.Add("06:15");
             data.Add("06:30");
@@ -952,6 +959,123 @@ namespace WpfApplication2
         {
 
         }
+        
+               private void Pick_stop_hour_appointment_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>();
+
+            //as vrea aici sa apara doar orele disponibile din start.. cumva intervalele orare care nu mai sunt disponibile
+            //sa nu mai apara din start in lista
+
+
+
+            data.Add("06:00");
+            data.Add("06:15");
+            data.Add("06:30");
+            data.Add("06:45");
+
+            data.Add("07:00");
+            data.Add("07:15");
+            data.Add("07:30");
+            data.Add("07:45");
+
+            data.Add("08:00");
+            data.Add("08:15");
+            data.Add("08:30");
+            data.Add("08:45");
+
+            data.Add("09:00");
+            data.Add("09:15");
+            data.Add("09:30");
+            data.Add("09:45");
+
+            data.Add("10:00");
+            data.Add("10:15");
+            data.Add("10:30");
+            data.Add("10:45");
+
+            data.Add("11:00");
+            data.Add("11:15");
+            data.Add("11:30");
+            data.Add("11:45");
+
+            data.Add("12:00");
+            data.Add("12:15");
+            data.Add("12:30");
+            data.Add("12:45");
+
+            data.Add("13:00");
+            data.Add("13:15");
+            data.Add("13:30");
+            data.Add("13:45");
+
+            data.Add("14:00");
+            data.Add("14:15");
+            data.Add("14:30");
+            data.Add("14:45");
+
+            data.Add("15:00");
+            data.Add("15:15");
+            data.Add("15:30");
+            data.Add("15:45");
+
+            data.Add("16:00");
+            data.Add("16:15");
+            data.Add("16:30");
+            data.Add("16:45");
+
+            data.Add("17:00");
+            data.Add("17:15");
+            data.Add("17:30");
+            data.Add("17:45");
+
+            data.Add("18:00");
+            data.Add("18:15");
+            data.Add("18:30");
+            data.Add("18:45");
+
+            data.Add("19:00");
+            data.Add("19:15");
+            data.Add("19:30");
+            data.Add("19:45");
+
+            data.Add("20:00");
+            data.Add("20:15");
+            data.Add("20:30");
+            data.Add("20:45");
+
+            data.Add("21:00");
+            data.Add("21:15");
+            data.Add("21:30");
+            data.Add("21:45");
+
+            data.Add("22:00");
+            data.Add("22:15");
+            data.Add("22:30");
+            data.Add("22:45");
+
+            data.Add("23:00");
+            data.Add("23:15");
+            data.Add("23:30");
+            data.Add("23:45");
+
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 9;
+        }
+
+        private void Pick_stop_hour_appointment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // ... Get the ComboBox.
+            //var comboBox = sender as ComboBox;
+
+            // ... Set SelectedItem as Window Title.
+            //string value = comboBox.SelectedItem as string;
+            //this.Title = "Selected: " + value;
+        }
+
+        
+
 
        /* private void button_set_new_appointments(object sender, RoutedEventArgs e)
         {
