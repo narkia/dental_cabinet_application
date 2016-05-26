@@ -303,7 +303,13 @@
                                 </TextBox.Style>
                             </TextBox>
                             <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Width="119" Height="33"/>
-
+                                <DatePicker.ToolTip>
+                                    <ToolTip>
+                                        ! choose a day for appointment !
+                                    </ToolTip>
+                                </DatePicker.ToolTip>
+                               
+                            </DatePicker>
                             
                             <TextBox Height="28" HorizontalAlignment="Left" Margin="103,-13,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
                                 <TextBox.Style>
@@ -351,7 +357,12 @@
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="100,44,0,0" Name="textBox18" Text="hh:mm" VerticalAlignment="Top" Width="50" />
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="112,6,0,0" Name="textBox19" Text="First name" VerticalAlignment="Top" Width="100" />
                         </Grid>
+                        
                     </GroupBox>
+                     <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="168,108,0,0" VerticalAlignment="Top" Width="68"/>
+                    <Label Content="Stop time" HorizontalAlignment="Left" Height="29" Margin="236,108,0,0" VerticalAlignment="Top" Width="73"/>
+                    <Label Content="App. day" HorizontalAlignment="Left" Height="29" Margin="51,108,0,0" VerticalAlignment="Top" Width="73"/>
+  
                 </Grid>
             </TabItem>
             <TabItem Name="tab4" Header="Treatments" TabIndex="4" MouseUp="treatments_tab_mouseup" >
