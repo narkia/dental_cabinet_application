@@ -847,6 +847,56 @@ namespace WpfApplication2
             // ... Set SelectedItem as Window Title.
             //string value = comboBox.SelectedItem as string;
             //this.Title = "Selected: " + value;
+            
+            
+            data.Add("06:00"); data.Add("06:15"); data.Add("06:30"); data.Add("06:45");
+            data.Add("07:00"); data.Add("07:15"); data.Add("07:30"); data.Add("07:45");
+            data.Add("08:00"); data.Add("08:15"); data.Add("08:30"); data.Add("08:45");
+            data.Add("09:00"); data.Add("09:15"); data.Add("09:30"); data.Add("09:45");
+            data.Add("10:00"); data.Add("10:15"); data.Add("10:30"); data.Add("10:45");
+            data.Add("11:00"); data.Add("11:15"); data.Add("11:30"); data.Add("11:45");
+            data.Add("12:00"); data.Add("12:15"); data.Add("12:30"); data.Add("12:45");
+            data.Add("13:00"); data.Add("13:15"); data.Add("13:30"); data.Add("13:45");
+            data.Add("14:00"); data.Add("14:15"); data.Add("14:30"); data.Add("14:45");
+            data.Add("15:00"); data.Add("15:15"); data.Add("15:30"); data.Add("15:45");
+            data.Add("16:00"); data.Add("16:15"); data.Add("16:30"); data.Add("16:45");
+            data.Add("17:00"); data.Add("17:15"); data.Add("17:30"); data.Add("17:45");
+            data.Add("18:00"); data.Add("18:15"); data.Add("18:30"); data.Add("18:45");
+            data.Add("19:00"); data.Add("19:15"); data.Add("19:30"); data.Add("19:45");
+            data.Add("20:00"); data.Add("20:15"); data.Add("20:30"); data.Add("20:45");
+            data.Add("21:00"); data.Add("21:15"); data.Add("21:30"); data.Add("21:45");
+            data.Add("22:00"); data.Add("22:15"); data.Add("22:30"); data.Add("22:45");
+            data.Add("23:00"); data.Add("23:15"); data.Add("23:30"); data.Add("23:45");
+
+            Pick_stop_hour_appointment.ItemsSource = data;
+            var string_stop_hour = Pick_stop_hour_appointment.SelectedItem.ToString();
+            var valoarea_selectata_acum_start_hour = comboBox.SelectionBoxItem;
+            var string_start_hour = valoarea_selectata_acum_start_hour.ToString();
+            
+            DateTime dt_start_hour = Convert.ToDateTime(string_start_hour);
+            DateTime dt_stop_hour = Convert.ToDateTime(string_stop_hour);
+
+
+            var interval_start = (dt_start_hour - dt_stop_hour).TotalMinutes;
+            var interval_start_inverse = (dt_stop_hour - dt_start_hour).TotalMinutes;
+
+            if (interval_start == 0)
+            {
+                Pick_stop_hour_appointment.SelectedIndex = 13;
+            }
+            else if(interval_start <= 0)
+            {
+                Pick_stop_hour_appointment.SelectedIndex = 11;
+            }
+            else if (interval_start >= 0)
+            {
+                Pick_stop_hour_appointment.SelectedIndex = 16;
+            }
+            else
+            {
+                //do nothing
+            }
+
         }
 
         private void Pick_start_hour_appointment_Loaded(object sender, RoutedEventArgs e)
