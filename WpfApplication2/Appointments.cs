@@ -58,13 +58,24 @@ namespace WpfApplication2
             var stop_time = /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToString();//Pick_stop_hour_appointment
             var data_appointment = datepicker_date_appointment.Text.ToString(); //datepicker_date_appointment
 
+            var result_check_date_textbox = 0;
+            if (data_appointment != "")
+            {
+                result_check_date_textbox = 1;
+            }
+            else
+            {
+                result_check_date_textbox = 0;
+            }
+
+
             var result_check_timeframe_textboxes = func_check_appointment_input_format_timeframe_in_textboxes();
             var result_check_names_textboxes = func_check_appointment_input_format_names_in_textboxes();
 
             //verify if the datas inserted in textboxes is as expected: date dd.mm.yyyy; names only letters; start hour and stop hour in format --> hh:mm
-            if ((result_check_timeframe_textboxes == 1)/* && (result_check_date_textbox == 1)*/ && (result_check_names_textboxes == 0))
+            if ((result_check_timeframe_textboxes == 1) && (result_check_date_textbox == 1) && (result_check_names_textboxes == 0))
             {
-  
+
                 //in case the appoinment date is today or a day after today - the processing is done
                 var possible_appointment = func_verify_if_possible_appointment_date(data_appointment, start_time);
                 if (possible_appointment == 0)//if the appoinment date is today or a day after today - the processing is done
@@ -73,8 +84,8 @@ namespace WpfApplication2
                     if (res == 0)
                     {
                         File.AppendAllText(path1, appendText);
-                                               //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
-                        MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!","Correct!");
+                        //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
+                        MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!", "Correct!");
 
                     }
                     else if (res == 1)
@@ -95,7 +106,7 @@ namespace WpfApplication2
             }
             else
             {
-                MessageBox.Show("Names shall contain only letters! This appointment cannot be set because of incorrect format of names.", "Attention!");
+                MessageBox.Show("Names shall be set AND shall contain only letters AND the date shall be valid! This appointment cannot be set because of incorrect date OR names.", "Attention!");
             }
 
 
@@ -411,38 +422,40 @@ namespace WpfApplication2
 
             // check textboxes for correct format .etc..
             var start_time_char_array = /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToCharArray();//Pick_start_hour_appointment
-            var stop_time_char_array = /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToCharArray();//Pick_stop_hour_appointment
+            var stop_time_char_array = /*textBox_timeframe_stop_appointment*/ Pick_stop_hour_appointment.Text.ToCharArray();//Pick_stop_hour_appointment
 
             // timeframe format check
-            int ora_calc = (int)Char.GetNumericValue(start_time_char_array[0]) * 10;
+            /*int ora_calc = (int)Char.GetNumericValue(start_time_char_array[0]) * 10;
             ora_calc = ora_calc + (int)Char.GetNumericValue(start_time_char_array[1]);
             int ora_stop_calc = (int)Char.GetNumericValue(stop_time_char_array[0]) * 10;
             ora_stop_calc = ora_stop_calc + (int)Char.GetNumericValue(stop_time_char_array[1]);
-            if (((ora_calc >= 0) && (ora_calc <= 23)) && ((ora_stop_calc >= 0) && (ora_stop_calc <= 23)))
-            {
-                result_hour = 1;
-            }
+            */
+            //if (((ora_calc >= 0) && (ora_calc <= 23)) && ((ora_stop_calc >= 0) && (ora_stop_calc <= 23)))
+            //{
+            //    result_hour = 1;
+            //}
 
-            var delimiter1 = start_time_char_array[2];
-            var delimiter2 = stop_time_char_array[2];
-            if ((delimiter1 == ':') && (delimiter2 == ':'))
-            {
-                result_delimiter = 1;
-            }
+            //var delimiter1 = start_time_char_array[2];
+            //var delimiter2 = stop_time_char_array[2];
+            //if ((delimiter1 == ':') && (delimiter2 == ':'))
+            //{
+            //    result_delimiter = 1;
+            //}
 
-            var min_calc = (int)Char.GetNumericValue(start_time_char_array[3]) * 10;
+            /*var min_calc = (int)Char.GetNumericValue(start_time_char_array[3]) * 10;
             min_calc = min_calc + (int)Char.GetNumericValue(start_time_char_array[4]);
             var min_stop_calc = (int)Char.GetNumericValue(stop_time_char_array[3]) * 10;
             min_stop_calc = min_stop_calc + (int)Char.GetNumericValue(stop_time_char_array[4]);
-            if (((min_calc >= 0) && (min_calc <= 59)) && ((min_stop_calc >= 0) && (min_stop_calc <= 59)))
-            {
-                result_minutes = 1;
-            }
+            */
+            //if (((min_calc >= 0) && (min_calc <= 59)) && ((min_stop_calc >= 0) && (min_stop_calc <= 59)))
+            //{
+            //    result_minutes = 1;
+            //}
 
-            if (((result_hour == 1) && (result_delimiter == 1)) && (result_minutes == 1))
-            {
-                result = 1;
-            }
+            //if (((result_hour == 1) && (result_delimiter == 1)) && (result_minutes == 1))
+            //{
+            result = 1;
+            //}
 
             return result;
         }
@@ -534,8 +547,24 @@ namespace WpfApplication2
             var lastname_char_array = textBox_appointments_patient.Text.ToCharArray();
             var firstname_char_array = textbox_firstname_appointment.Text.ToCharArray();
 
+            if ((lastname_char_array.Length == 0) || (firstname_char_array.Length == 0) )
+            {
+                result_lastname = 1;
+                result_firstname = 1;
+
+                //var borderBrush = new Border();
+                // borderBrush.Opacity = 10;
+                //borderBrush.BorderThickness = 5;
+                //textBox_appointments_patient.BorderBrush = new Color(1);
+                textBox_appointments_patient.BorderThickness = new Thickness(5.0);
+                textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
+               // textBox_appointments_patient.BorderBrush = new Brush(123);
+               // textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
+
+            }
+
             // lastname format check
-                 for (i = 0; i < lastname_char_array.Length; i++)
+            for (i = 0; i < lastname_char_array.Length; i++)
             {
                 if (!Char.IsLetter(lastname_char_array[i]))
                 {
