@@ -322,14 +322,14 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="124,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" >
+                            <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="124,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" MouseLeave="clear_colors_notification_start_time_combobox" >
                                 <ComboBox.ToolTip>
                                     <ToolTip>
                                         ! start time of appointment in following format--> hh:mm !
                                     </ToolTip>
                                 </ComboBox.ToolTip>
                             </ComboBox>
-                            <ComboBox x:Name="Pick_stop_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="191,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_stop_hour_appointment_Loaded" SelectionChanged="Pick_stop_hour_appointment_SelectionChanged" >
+                            <ComboBox x:Name="Pick_stop_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="191,50,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_stop_hour_appointment_Loaded" SelectionChanged="Pick_stop_hour_appointment_SelectionChanged" MouseLeave="clear_colors_notification_stop_time_combobox">
                                 <ComboBox.ToolTip>
                                     <ToolTip>
                                         ! stop time of appointment in following format--> hh:mm !
@@ -339,7 +339,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="show info from database" Margin="438,164,422,554">
+                    <GroupBox Header="show info from database" Margin="658,33,161,650">
                         <Grid Height="132">
                             <Button Content="afiseaza toate programarile" Height="26" HorizontalAlignment="Left" Margin="5,10,0,0" Name="button5" VerticalAlignment="Top" Width="184" Click="button_write_all_appointments_in_textbox" />
                             <Button Content="afiseaza programarile de azi" Height="28" HorizontalAlignment="Left" Margin="5,41,0,0" Name="button6" VerticalAlignment="Top" Width="184" Click="button_write_appointments_of_today_in_textblock" />
@@ -349,14 +349,70 @@
                     <TextBlock Name="textBlock_all_appointments"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="430"  Text="see here all the appointments in database" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="5,0,0,0"  />
                     <TextBlock Name="textBlock_appointments_of_today" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="361" Text="see here all the appointments of today" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="504,0,0,0" />
                     <GroupBox Header="delete appointment" Margin="332,33,422,717">
-                        <Grid Height="92" Width="289">
-                            <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="156,50,0,0" Name="button27" VerticalAlignment="Top" Width="122" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox14" Text="Last name" VerticalAlignment="Top" Width="100" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,44,0,0" Name="textBox17" Text="dd.mm.yyyy" VerticalAlignment="Top" Width="85" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="100,44,0,0" Name="textBox18" Text="hh:mm" VerticalAlignment="Top" Width="50" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="112,6,0,0" Name="textBox19" Text="First name" VerticalAlignment="Top" Width="100" />
-                        </Grid>
+                        <Grid Margin="14,10,-2,10">
+                            <Grid.Resources>
+                                <VisualBrush x:Key="Appointment_last_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Last Name" Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
 
+                                <VisualBrush x:Key="Appointment_first_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="First Name " Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="7*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="6,63,0,0" Name="button27" VerticalAlignment="Top" Width="122" Grid.Row="1" />
+                            <TextBox Height="28" HorizontalAlignment="Left" Margin="6,0,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=appointment_last_name_delete_textBox,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource Appointment_last_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,0,73,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseRightButtonDown="afiseaza_appointments_in_listbox">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=appointment_first_name_delete_textBox,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource Appointment_first_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <DatePicker x:Name="datepicker_date_appointment_for_clear" HorizontalAlignment="Left" Margin="6,62,0,0" VerticalAlignment="Top" Width="119" Height="23" MouseLeave="appointment_delete_date_colors_notification">
+                                <DatePicker.ToolTip>
+                                    <ToolTip Content="! choose a day for appointment !"/>
+                                </DatePicker.ToolTip>
+                            </DatePicker>
+                            <ComboBox x:Name="Pick_start_hour_appointment_Copy" HorizontalAlignment="Left" Height="23" Margin="133,62,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" MouseLeave="clear_colors_notification_start_time_combobox" RenderTransformOrigin="0.532,1.576" >
+                                <ComboBox.ToolTip>
+                                    <ToolTip>
+                                        ! start time of appointment to be deleted !"/>
+                                    </ToolTip> 
+                                </ComboBox.ToolTip>
+                            </ComboBox>
+                            <Label Content="Start time" HorizontalAlignment="Left" Height="24" Margin="133,33,0,0" VerticalAlignment="Top" Width="62"/>
+                            <Label Content="Appointment day" HorizontalAlignment="Left" Height="24" Margin="6,33,0,0" VerticalAlignment="Top" Width="115"/>
+                            <ListBox Name="listbox_appointments_to_be_deleted" HorizontalAlignment="Left" Height="94" Margin="6,90,0,0" VerticalAlignment="Top" Width="268" Grid.RowSpan="2"/>
+</Grid>
                     </GroupBox>
                     <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="168,108,0,0" VerticalAlignment="Top" Width="68"/>
                     <Label Content="Stop time" HorizontalAlignment="Left" Height="29" Margin="236,108,0,0" VerticalAlignment="Top" Width="73"/>
