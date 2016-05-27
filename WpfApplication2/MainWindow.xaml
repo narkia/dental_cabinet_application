@@ -290,7 +290,7 @@
                                     </TransformGroup>
                                 </Button.RenderTransform>
                             </Button>
-                            <TextBox  Height="28" HorizontalAlignment="Left" Margin="0,-13,0,0" Name="textBox_appointments_patient" VerticalAlignment="Top" Width="98" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                            <TextBox  Height="28" HorizontalAlignment="Left" Margin="0,-13,0,0" Name="textBox_appointments_patient" VerticalAlignment="Top" Width="98" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseLeave="appointments_delete_colorss_notification_last_name" >
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -302,7 +302,7 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="119" Height="33">
+                            <DatePicker Name="datepicker_date_appointment" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="119" Height="33" MouseLeave="appointment_delete_date_colors_notification">
                                 <DatePicker.ToolTip>
                                     <ToolTip>
                                         ! choose a day for appointment !
@@ -310,7 +310,7 @@
                                 </DatePicker.ToolTip>
                             </DatePicker>
 
-                            <TextBox Height="28" HorizontalAlignment="Left" Margin="103,-13,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                             <TextBox Height="28" HorizontalAlignment="Left" Margin="103,-13,0,0" Name="textbox_firstname_appointment" VerticalAlignment="Top" Width="110" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseLeave="appointments_delete_colorss_notification_first_name">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -360,7 +360,7 @@
                     </GroupBox>
                     <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="168,108,0,0" VerticalAlignment="Top" Width="68"/>
                     <Label Content="Stop time" HorizontalAlignment="Left" Height="29" Margin="236,108,0,0" VerticalAlignment="Top" Width="73"/>
-                    <Label Content="App. day" HorizontalAlignment="Left" Height="29" Margin="47,108,0,0" VerticalAlignment="Top" Width="73"/>
+                    <Label Content="Appointment day" HorizontalAlignment="Left" Height="29" Margin="47,108,0,0" VerticalAlignment="Top" Width="116"/>
 
                 </Grid>
             </TabItem>
