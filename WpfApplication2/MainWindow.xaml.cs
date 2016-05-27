@@ -600,8 +600,8 @@ namespace WpfApplication2
 
         private void appointments_tab_mouseup(object sender, MouseButtonEventArgs e)
         {
-            mesaj = "->intrat in appointment tab<-";
-            action_window_update(mesaj);
+            //mesaj = "->intrat in appointment tab<-";
+            //action_window_update(mesaj);
         }
 
         private void treatments_tab_mouseup(object sender, MouseButtonEventArgs e)
@@ -1008,42 +1008,38 @@ namespace WpfApplication2
             Pick_stop_hour_appointment.BorderBrush = Brushes.LightGray;
         }
 
-        private void afiseaza_appointments_in_listbox(object sender, MouseEventArgs e)
+        private void afiseaza_appointments_in_listbox_1(object sender, MouseWheelEventArgs e)
         {
-            //.ActualWidth = 112;
-            
             List<string> lines = new List<string>();
             using (StreamReader r = new StreamReader(path1))
             {
                 string line;
-                while ((line = r.ReadLine()) != null)
-                {
-                    lines.Add(line);
-                }
+             while ((line = r.ReadLine()) != null)
+             {
+                 lines.Add(line);
+             }
             }
+            /*int i = 0;
+            while ( i < 10)
+            {
+                i++;
+                var a = i;
+                var aa = Convert.ToString(a); 
+                lines.Add(aa);
+            }*/
+            //MessageBox.Show(lines[3]);
 
-            listbox_appointments_to_be_deleted.Items.Add(lines);
+            foreach (var item in lines)
+            {
+                listbox_appointments_to_be_deleted.Items.Add(item);
+            }
             
+            //aici tre sa mai fac sa se vada exact caracterele din lista
+            
+            
+            mesaj = "-> intrat functia de scrie listbox_delete  <-";
+            action_window_update(mesaj);
         }
-
-        private void afiseaza_appointments_in_listbox(object sender, MouseButtonEventArgs e)
-        {
-             List<string> lines = new List<string>();
-                 using (StreamReader r = new StreamReader(path1))
-                 {
-                     string line;
-                     while ((line = r.ReadLine()) != null)
-                     {
-                         lines.Add(line);
-                     }
-                 }
-
-            listbox_appointments_to_be_deleted.Items.Add(lines);
-
-             mesaj = "-> intrat functia de scrie listbox_delete  <-";
-             action_window_update(mesaj);
-
-        }    
     }
 }
 
