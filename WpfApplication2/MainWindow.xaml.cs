@@ -43,7 +43,10 @@ namespace WpfApplication2
         
         List<string> data_appointments_hours = new List<string>()
         {
-            "06:00","06:15","06:30","06:45","07:00","07:15","07:30","07:45",
+             "00:00","00:15","00:30","00:45","01:00","01:15","01:30","01:45",
+            "02:00","02:15","02:30","02:45","03:00","03:15","03:30","03:45",
+            "04:00","04:15","04:30","04:45","05:00","05:15","05:30","05:45",
+             "06:00","06:15","06:30","06:45","07:00","07:15","07:30","07:45",
             "08:00","08:15","08:30","08:45","09:00","09:15","09:30","09:45",
             "10:00","10:15","10:30","10:45","11:00","11:15","11:30","11:45",
             "12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45",
@@ -861,7 +864,10 @@ namespace WpfApplication2
             var valoarea_selectata_acum_start_hour = comboBox.SelectionBoxItem;
             var index_selectat_acum_start_hour = comboBox.SelectedIndex;
             var string_start_hour = valoarea_selectata_acum_start_hour.ToString();
-            
+              if (string_start_hour == "")
+            {
+                string_start_hour = "09:00";
+            }
             DateTime dt_start_hour = Convert.ToDateTime(string_start_hour);
             DateTime dt_stop_hour = Convert.ToDateTime(string_stop_hour);
 
@@ -987,6 +993,57 @@ namespace WpfApplication2
             }
                                
         }*/
+        
+        
+        private void clear_colors_notification_start_time_combobox(object sender, MouseEventArgs e)
+        {
+            Pick_start_hour_appointment.BorderThickness = new Thickness(1.0);
+            Pick_start_hour_appointment.BorderBrush = Brushes.LightGray;
+
+        }
+
+        private void clear_colors_notification_stop_time_combobox(object sender, MouseEventArgs e)
+        {
+            Pick_stop_hour_appointment.BorderThickness = new Thickness(1.0);
+            Pick_stop_hour_appointment.BorderBrush = Brushes.LightGray;
+        }
+
+        private void afiseaza_appointments_in_listbox(object sender, MouseEventArgs e)
+        {
+            //.ActualWidth = 112;
+            
+            List<string> lines = new List<string>();
+            using (StreamReader r = new StreamReader(path1))
+            {
+                string line;
+                while ((line = r.ReadLine()) != null)
+                {
+                    lines.Add(line);
+                }
+            }
+
+            listbox_appointments_to_be_deleted.Items.Add(lines);
+            
+        }
+
+        private void afiseaza_appointments_in_listbox(object sender, MouseButtonEventArgs e)
+        {
+             List<string> lines = new List<string>();
+                 using (StreamReader r = new StreamReader(path1))
+                 {
+                     string line;
+                     while ((line = r.ReadLine()) != null)
+                     {
+                         lines.Add(line);
+                     }
+                 }
+
+            listbox_appointments_to_be_deleted.Items.Add(lines);
+
+             mesaj = "-> intrat functia de scrie listbox_delete  <-";
+             action_window_update(mesaj);
+
+        }    
     }
 }
 
