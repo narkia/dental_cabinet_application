@@ -20,7 +20,7 @@ namespace WpfApplication2
     public partial class MainWindow : Window
     {
 
-        public void busiest_day_of_the_year()
+        public void busiest_day_of_the_year() //!!!! TRE SA LUCREZ LA FRMATUL DATEI DE APPOINTMENT CA ACUM DA EROARE
         {
             // MessageBox.Show("am vrut sa afisez un graphic cu cea mai ocupata zi din an.. nush ce am reusit sau ba..");
             const double margin = 10;
