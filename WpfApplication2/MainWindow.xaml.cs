@@ -40,6 +40,19 @@ namespace WpfApplication2
         string search_text = "";
         int counter_fields_action_window = 0;
         Medication medication;
+        
+        List<string> data_appointments_hours = new List<string>()
+        {
+            "06:00","06:15","06:30","06:45","07:00","07:15","07:30","07:45",
+            "08:00","08:15","08:30","08:45","09:00","09:15","09:30","09:45",
+            "10:00","10:15","10:30","10:45","11:00","11:15","11:30","11:45",
+            "12:00","12:15","12:30","12:45","13:00","13:15","13:30","13:45",
+            "14:00","14:15","14:30","14:45","15:00","15:15","15:30","15:45",
+            "16:00","16:15","16:30","16:45","17:00","17:15","17:30","17:45",
+            "18:00","18:15","18:30","18:45","19:00","19:15","19:30","19:45",
+            "20:00","20:15","20:30","20:45","21:00","21:15","21:30","21:45",
+            "22:00","22:15","22:30","22:45","23:00","23:15","23:30","23:45"
+        };
 
         private void mouse_enter_button1(object sender, MouseEventArgs e)
         {
@@ -841,61 +854,22 @@ namespace WpfApplication2
         
         private void Pick_start_hour_appointment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ... Get the ComboBox.
             var comboBox = sender as ComboBox;
 
-            // ... Set SelectedItem as Window Title.
-            //string value = comboBox.SelectedItem as string;
-            //this.Title = "Selected: " + value;
-            List<string> data = new List<string>();
-
-            data.Add("06:00"); data.Add("06:15"); data.Add("06:30"); data.Add("06:45");
-            data.Add("07:00"); data.Add("07:15"); data.Add("07:30"); data.Add("07:45");
-            data.Add("08:00"); data.Add("08:15"); data.Add("08:30"); data.Add("08:45");
-            data.Add("09:00"); data.Add("09:15"); data.Add("09:30"); data.Add("09:45");
-            data.Add("10:00"); data.Add("10:15"); data.Add("10:30"); data.Add("10:45");
-            data.Add("11:00"); data.Add("11:15"); data.Add("11:30"); data.Add("11:45");
-            data.Add("12:00"); data.Add("12:15"); data.Add("12:30"); data.Add("12:45");
-            data.Add("13:00"); data.Add("13:15"); data.Add("13:30"); data.Add("13:45");
-            data.Add("14:00"); data.Add("14:15"); data.Add("14:30"); data.Add("14:45");
-            data.Add("15:00"); data.Add("15:15"); data.Add("15:30"); data.Add("15:45");
-            data.Add("16:00"); data.Add("16:15"); data.Add("16:30"); data.Add("16:45");
-            data.Add("17:00"); data.Add("17:15"); data.Add("17:30"); data.Add("17:45");
-            data.Add("18:00"); data.Add("18:15"); data.Add("18:30"); data.Add("18:45");
-            data.Add("19:00"); data.Add("19:15"); data.Add("19:30"); data.Add("19:45");
-            data.Add("20:00"); data.Add("20:15"); data.Add("20:30"); data.Add("20:45");
-            data.Add("21:00"); data.Add("21:15"); data.Add("21:30"); data.Add("21:45");
-            data.Add("22:00"); data.Add("22:15"); data.Add("22:30"); data.Add("22:45");
-            data.Add("23:00"); data.Add("23:15"); data.Add("23:30"); data.Add("23:45");
-
-            Pick_stop_hour_appointment.ItemsSource = data;
+            Pick_stop_hour_appointment.ItemsSource = data_appointments_hours;
             var string_stop_hour = Pick_stop_hour_appointment.SelectedItem.ToString();
             var valoarea_selectata_acum_start_hour = comboBox.SelectionBoxItem;
+            var index_selectat_acum_start_hour = comboBox.SelectedIndex;
             var string_start_hour = valoarea_selectata_acum_start_hour.ToString();
             
             DateTime dt_start_hour = Convert.ToDateTime(string_start_hour);
             DateTime dt_stop_hour = Convert.ToDateTime(string_stop_hour);
 
-
             var interval_start = (dt_start_hour - dt_stop_hour).TotalMinutes;
             var interval_start_inverse = (dt_stop_hour - dt_start_hour).TotalMinutes;
+                     
+            Pick_stop_hour_appointment.SelectedIndex = index_selectat_acum_start_hour + 4;                    
 
-            if (interval_start == 0)
-            {
-                Pick_stop_hour_appointment.SelectedIndex = 13;
-            }
-            else if(interval_start <= 0)
-            {
-                Pick_stop_hour_appointment.SelectedIndex = 11;
-            }
-            else if (interval_start >= 0)
-            {
-                Pick_stop_hour_appointment.SelectedIndex = 16;
-            }
-            else
-            {
-                //do nothing
-            }
 
         }
 
@@ -907,28 +881,9 @@ namespace WpfApplication2
             //as vrea aici sa apara doar orele disponibile din start.. cumva intervalele orare care nu mai sunt disponibile
             //sa nu mai apara din start in lista
             
-            data.Add("06:00"); data.Add("06:15"); data.Add("06:30"); data.Add("06:45");
-            data.Add("07:00"); data.Add("07:15"); data.Add("07:30"); data.Add("07:45");
-            data.Add("08:00"); data.Add("08:15"); data.Add("08:30"); data.Add("08:45");
-            data.Add("09:00"); data.Add("09:15"); data.Add("09:30"); data.Add("09:45");
-            data.Add("10:00"); data.Add("10:15"); data.Add("10:30"); data.Add("10:45");
-            data.Add("11:00"); data.Add("11:15"); data.Add("11:30"); data.Add("11:45");
-            data.Add("12:00"); data.Add("12:15"); data.Add("12:30"); data.Add("12:45");
-            data.Add("13:00"); data.Add("13:15"); data.Add("13:30"); data.Add("13:45");
-            data.Add("14:00"); data.Add("14:15"); data.Add("14:30"); data.Add("14:45");
-            data.Add("15:00"); data.Add("15:15"); data.Add("15:30"); data.Add("15:45");
-            data.Add("16:00"); data.Add("16:15"); data.Add("16:30"); data.Add("16:45");
-            data.Add("17:00"); data.Add("17:15"); data.Add("17:30"); data.Add("17:45");
-            data.Add("18:00"); data.Add("18:15"); data.Add("18:30"); data.Add("18:45");
-            data.Add("19:00"); data.Add("19:15"); data.Add("19:30"); data.Add("19:45");
-            data.Add("20:00"); data.Add("20:15"); data.Add("20:30"); data.Add("20:45");
-            data.Add("21:00"); data.Add("21:15"); data.Add("21:30"); data.Add("21:45");
-            data.Add("22:00"); data.Add("22:15"); data.Add("22:30"); data.Add("22:45");
-            data.Add("23:00"); data.Add("23:15"); data.Add("23:30"); data.Add("23:45");
-
             var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = data;
-            comboBox.SelectedIndex = 9;
+            comboBox.ItemsSource = data_appointments_hours;
+            comboBox.SelectedIndex = 8;
                         
         }
 
@@ -944,44 +899,44 @@ namespace WpfApplication2
             //as vrea aici sa apara doar orele disponibile din start.. cumva intervalele orare care nu mai sunt disponibile
             //sa nu mai apara din start in lista
 
-            data.Add("06:00"); data.Add("06:15"); data.Add("06:30"); data.Add("06:45");
-            data.Add("07:00"); data.Add("07:15"); data.Add("07:30"); data.Add("07:45");
-            data.Add("08:00"); data.Add("08:15"); data.Add("08:30"); data.Add("08:45");
-            data.Add("09:00"); data.Add("09:15"); data.Add("09:30"); data.Add("09:45");
-            data.Add("10:00"); data.Add("10:15"); data.Add("10:30"); data.Add("10:45");
-            data.Add("11:00"); data.Add("11:15"); data.Add("11:30"); data.Add("11:45");
-            data.Add("12:00"); data.Add("12:15"); data.Add("12:30"); data.Add("12:45");
-            data.Add("13:00"); data.Add("13:15"); data.Add("13:30"); data.Add("13:45");
-            data.Add("14:00"); data.Add("14:15"); data.Add("14:30"); data.Add("14:45");
-            data.Add("15:00"); data.Add("15:15"); data.Add("15:30"); data.Add("15:45");
-            data.Add("16:00"); data.Add("16:15"); data.Add("16:30"); data.Add("16:45");
-            data.Add("17:00"); data.Add("17:15"); data.Add("17:30"); data.Add("17:45");
-            data.Add("18:00"); data.Add("18:15"); data.Add("18:30"); data.Add("18:45");
-            data.Add("19:00"); data.Add("19:15"); data.Add("19:30"); data.Add("19:45");
-            data.Add("20:00"); data.Add("20:15"); data.Add("20:30"); data.Add("20:45");
-            data.Add("21:00"); data.Add("21:15"); data.Add("21:30"); data.Add("21:45");
-            data.Add("22:00"); data.Add("22:15"); data.Add("22:30"); data.Add("22:45");
-            data.Add("23:00"); data.Add("23:15"); data.Add("23:30"); data.Add("23:45");
-
             var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = data;
-            comboBox.SelectedIndex = 9;
+            comboBox.ItemsSource = data_appointments_hours;
+            comboBox.SelectedIndex = 13;
         }
 
         private void Pick_stop_hour_appointment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ... Get the ComboBox.
-            //var comboBox = sender as ComboBox;
+            var comboBox = sender as ComboBox;
+            
+            Pick_start_hour_appointment.ItemsSource = data_appointments_hours;
+            var string_start_hour = Pick_stop_hour_appointment.SelectedItem.ToString();
+            var valoarea_selectata_acum_stop_hour = comboBox.SelectionBoxItem;
+            var index_selectat_acum_stop_hour = comboBox.SelectedIndex;
+            var string_stop_hour = valoarea_selectata_acum_stop_hour.ToString();
+                        
+            //Pick_start_hour_appointment.SelectedIndex = index_selectat_acum_stop_hour - 4;              
 
-            // ... Set SelectedItem as Window Title.
-            //string value = comboBox.SelectedItem as string;
-            //this.Title = "Selected: " + value;
         }
 
-        
+        private void appointment_delete_date_colors_notification(object sender, MouseEventArgs e)
+        {
+            datepicker_date_appointment.BorderThickness = new Thickness(1.0);
+            datepicker_date_appointment.BorderBrush = Brushes.Gray;
+        }
 
+        private void appointments_delete_colorss_notification_first_name(object sender, MouseEventArgs e)
+        {
+            textBox_appointments_patient.BorderThickness = new Thickness(1.0);
+            textBox_appointments_patient.BorderBrush = Brushes.Gray;
+        }
 
-       /* private void button_set_new_appointments(object sender, RoutedEventArgs e)
+        private void appointments_delete_colorss_notification_last_name(object sender, MouseEventArgs e)
+        {
+            textbox_firstname_appointment.BorderThickness = new Thickness(1.0);
+            textbox_firstname_appointment.BorderBrush = Brushes.Gray;
+        }
+
+        /* private void button_set_new_appointments(object sender, RoutedEventArgs e)
         {
             DateTime ee, f;
             string a = "", b = "";
