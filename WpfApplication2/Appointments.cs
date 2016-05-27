@@ -51,12 +51,18 @@ namespace WpfApplication2
                 string allText = createText + createText1 + createText2;
                 File.WriteAllText(path1, allText);
             }
-            string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() /* datepicker_date_appointment */ + "   |" + /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToString() /* Pick_stop_hour_appointment */ + " --> " + /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToString() /* Pick_stop_hour_appointment */ + "|" + Environment.NewLine;
+             string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() + "   |" + Pick_start_hour_appointment.Text.ToString() + " --> " + Pick_stop_hour_appointment.Text.ToString() + "|" + Environment.NewLine;
             string name_patient = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString();
 
-            var start_time = /*textBox_timeframe_start_appointment*/Pick_start_hour_appointment.Text.ToString();//Pick_start_hour_appointment
-            var stop_time = /*textBox_timeframe_stop_appointment*/Pick_stop_hour_appointment.Text.ToString();//Pick_stop_hour_appointment
-            var data_appointment = datepicker_date_appointment.Text.ToString(); //datepicker_date_appointment
+            var start_time = Pick_start_hour_appointment.Text.ToString();
+            if (start_time == "")
+            {
+                start_time = "08:00";
+            }
+            var stop_time = Pick_stop_hour_appointment.Text.ToString();
+            var start_time_char_array = start_time.ToCharArray();
+            var stop_time_char_array = stop_time.ToCharArray();
+            var data_appointment = datepicker_date_appointment.Text.ToString();
 
             var result_check_date_textbox = 0;
             if (data_appointment != "")
@@ -70,12 +76,14 @@ namespace WpfApplication2
                 datepicker_date_appointment.BorderBrush = Brushes.Red;
             }
 
+            // compare the start and stop hour.. appointments cannot be set if the hours are equal OR the stop time is earlier than start time..
+            var correct_start_and_stop_time = compare_two_arrays_of_char_with_same_length(start_time_char_array, stop_time_char_array);
+
             var result_check_names_textboxes = func_check_appointment_input_format_names_in_textboxes();
-
             //verify if the datas inserted in textboxes is as expected: date dd.mm.yyyy; names only letters; start hour and stop hour in format --> hh:mm
-            if ((result_check_date_textbox == 1) && (result_check_names_textboxes == 0))
+            if ((result_check_date_textbox == 1) && (result_check_names_textboxes == 0) && (correct_start_and_stop_time != false))
             {
-
+    
                 //in case the appoinment date is today or a day after today - the processing is done
                 var possible_appointment = func_verify_if_possible_appointment_date(data_appointment, start_time);
                 if (possible_appointment == 0)//if the appoinment date is today or a day after today - the processing is done
@@ -86,7 +94,7 @@ namespace WpfApplication2
                         File.AppendAllText(path1, appendText);
                         //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
                         MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!", "Correct!");
-
+    
                     }
                     else if (res == 1)
                     {
@@ -106,10 +114,49 @@ namespace WpfApplication2
             }
             else
             {
+                if (correct_start_and_stop_time == false)
+                {
+                    Pick_start_hour_appointment.BorderThickness = new Thickness(10.0);
+                    Pick_start_hour_appointment.BorderBrush = Brushes.Red;
+                    Pick_stop_hour_appointment.BorderThickness = new Thickness(10.0);
+                    Pick_stop_hour_appointment.BorderBrush = Brushes.Red;
+                }
                 MessageBox.Show("Names shall be set AND shall contain only letters AND the date shall be valid! This appointment cannot be set because of incorrect date OR names.", "Attention!");
             }
 
 
+        }
+        public Boolean compare_two_arrays_of_char_with_same_length(Char[]a, Char[]b)
+        {
+            Boolean res = true;
+            
+            var int_a_1 = (int)Char.GetNumericValue(a[0]);
+            var int_a_2 = (int)Char.GetNumericValue(a[1]);
+            var int_b_1 = (int)Char.GetNumericValue(b[0]);
+            var int_b_2 = (int)Char.GetNumericValue(b[1]);
+
+            var int_a_4 = (int)Char.GetNumericValue(a[3]);
+            var int_a_5 = (int)Char.GetNumericValue(a[4]);
+            var int_b_4 = (int)Char.GetNumericValue(b[3]);
+            var int_b_5 = (int)Char.GetNumericValue(b[4]);
+
+            var a_1_2_4_5 = int_a_1*1000 + int_a_2*100 + int_a_4*10 + int_a_5;
+            var b_1_2_4_5 = int_b_1 * 1000 + int_b_2 * 100 + int_b_4 * 10 + int_b_5;
+                               
+            if (a_1_2_4_5 >= b_1_2_4_5)
+            {
+                res = res & false;
+            }
+            else if (a_1_2_4_5 < b_1_2_4_5)
+            {
+                res = res & true;
+            }
+            else
+            {
+                //lasa asa
+            }
+            
+            return res;
         }
 
         /*************************************************************************************
@@ -519,11 +566,10 @@ namespace WpfApplication2
                 result_firstname = 1;
 
                 textBox_appointments_patient.BorderThickness = new Thickness(5.0);
-                textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
                 textBox_appointments_patient.BorderBrush = Brushes.Red;
+                textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
                 textbox_firstname_appointment.BorderBrush = Brushes.Red;
-               // textBox_appointments_patient.BorderBrush = new Brush(123);
-               // textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
+               
 
             }
 
@@ -533,6 +579,8 @@ namespace WpfApplication2
                 if (!Char.IsLetter(lastname_char_array[i]))
                 {
                     result_lastname = 1;
+                    textBox_appointments_patient.BorderThickness = new Thickness(5.0);
+                    textBox_appointments_patient.BorderBrush = Brushes.Red;
                     break;
                 }
             }
@@ -543,6 +591,8 @@ namespace WpfApplication2
                 if (!Char.IsLetter(firstname_char_array[i]))
                 {
                     result_firstname = 1;
+                    textbox_firstname_appointment.BorderThickness = new Thickness(5.0);
+                    textbox_firstname_appointment.BorderBrush = Brushes.Red;
                     break;
                 }
             }
@@ -554,6 +604,7 @@ namespace WpfApplication2
 
             return result;
         }
+
 
     }
 }
