@@ -524,7 +524,7 @@ namespace WpfApplication2
                 if (lineindex > 3)
                 {
                     var date_of_appointment_line = func_extract_date_of_appointment(line);
-                    DateTime datetime_date_appointment = DateTime.ParseExact(date_of_appointment_line, "dd/MM/yyyy",
+                    DateTime datetime_date_appointment = DateTime.ParseExact(date_of_appointment_line, "dd.MM.yyyy",
                                        System.Globalization.CultureInfo.InvariantCulture);
                     //var datetime_date_appointment = Convert.ToDateTime(date_of_appointment_line);
                     var zi_an = datetime_date_appointment.DayOfYear;
@@ -550,9 +550,10 @@ namespace WpfApplication2
         private void click_busiest_day_of_the_year(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
-            var busiest_day_in_database = func_busiest_day_of_the_year();
+                        var busiest_day_in_database = func_busiest_day_of_the_year();
 
-            MessageBox.Show("cea mai busy data din istoria cabinetului este --> "+ busiest_day_in_database);
+                      MessageBox.Show("cea mai busy data din istoria cabinetului este --> "+ busiest_day_in_database);
+            //MessageBox.Show("ceva nu merge bine cu datele appointmenturilor....lucreaza la Statistics");
         }
 
         private void click_delete_treatment(object sender, RoutedEventArgs e)
@@ -834,6 +835,7 @@ namespace WpfApplication2
             var years = get_vector_years();
             var appointments = get_vector_appointments();
             show_graphic_2D_works_ok(years, appointments);
+            //MessageBox.Show("ceva nu merge bine cu datele appointmenturilor....lucreaza la Statistics");
         }
 
         
@@ -847,6 +849,8 @@ namespace WpfApplication2
             //show_graphic_2D_works_appointments_per_months(years, appointments);
             //show_graphic_2D_works_ok_matrix(years, appointments_matrix);
             show_graphic_2D_works_appointments_per_months_matrix(years, appointments_matrix);
+            
+            //MessageBox.Show("ceva nu merge bine cu datele appointmenturilor....lucreaza la Statistics");
         }
 
         private void delete_graphic(object sender, RoutedEventArgs e)

@@ -51,7 +51,7 @@ namespace WpfApplication2
                 string allText = createText + createText1 + createText2;
                 File.WriteAllText(path1, allText);
             }
-             string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + datepicker_date_appointment.Text.ToString() + "   |" + Pick_start_hour_appointment.Text.ToString() + " --> " + Pick_stop_hour_appointment.Text.ToString() + "|" + Environment.NewLine;
+            
             string name_patient = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString();
 
             var start_time = Pick_start_hour_appointment.Text.ToString();
@@ -88,9 +88,14 @@ namespace WpfApplication2
                 var possible_appointment = func_verify_if_possible_appointment_date(data_appointment, start_time);
                 if (possible_appointment == 0)//if the appoinment date is today or a day after today - the processing is done
                 {
-                    var res = func_verify_if_possible_appointment_start_time(start_time, stop_time, data_appointment);
+                    var aa = Convert.ToDateTime(data_appointment).ToString("dd.MM.yyyy");
+                    var date_appointments_good = aa;
+                    var res = func_verify_if_possible_appointment_start_time(start_time, stop_time, date_appointments_good/*data_appointment*/);
                     if (res == 0)
                     {
+                        var a = Convert.ToDateTime(data_appointment).ToString("dd.MM.yyyy");
+                        var date_appointments_good_to_write_in_database = a;
+                        string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + date_appointments_good_to_write_in_database /*datepicker_date_appointment.Text.ToString()*/ + "   |" + Pick_start_hour_appointment.Text.ToString() + " --> " + Pick_stop_hour_appointment.Text.ToString() + "|" + Environment.NewLine;
                         File.AppendAllText(path1, appendText);
                         //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
                         MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!", "Correct!");
@@ -98,9 +103,9 @@ namespace WpfApplication2
                     }
                     else if (res == 1)
                     {
-                        string all_appointments_on_selected_date = func_get_all_lines_with_today_date(data_appointment);
+                        string all_appointments_on_selected_date = func_get_all_lines_with_today_date(date_appointments_good);
                         //MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + data_appointment + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!");
-                        MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + data_appointment + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!", "Attention!");
+                        MessageBox.Show("Timeframe you've chosen : " + start_time + "-" + stop_time + ", is not available! You should choose other timeframe! All the appointments in the day " + date_appointments_good + " are:\n\n" + all_appointments_on_selected_date + "\n Please choose other timeframe different than the above listed ones!", "Attention!");
                     }
                     else
                     {
