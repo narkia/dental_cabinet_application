@@ -235,6 +235,27 @@ namespace WpfApplication2
             file.Close();
             return result_lines;
         }
+
+        private List<string> func_get_all_lines_with_today_date_in_list(string data_curenta)
+        {
+            
+            var lista = new List<string>();
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+
+                var position = line.IndexOf(data_curenta, StringComparison.InvariantCultureIgnoreCase);
+                if (position > -1)
+                {
+                    lista.Add(line);
+                    
+                }
+            }
+            file.Close();
+            return lista;
+        }
         /*************************************************************************************
         * ***********************************************************************************
         * Function name:       button_func_all_appointments_of_today_welcome_page()
@@ -610,6 +631,39 @@ namespace WpfApplication2
             return result;
         }
 
+/******************************************************************************************/
+/* grup de functii care se vor ocupa de stergerea programarilor din appointments database */
+        public Boolean func_search_last_name_in_appointments_db(string lastname)
+        {
+            Boolean res = false;
+            return res;
+        }
+        public Boolean func_search_first_name_in_appointments_db(string firstname)
+        {
+            Boolean res = false;
+            return res;
+         }
+        public Boolean func_search_date_of_appointment_in_db(string date_appointment)
+        {
+            Boolean res = false;
 
+            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            string line = "";
+
+            while ((line = file.ReadLine()) != null)
+            {
+                //see if the date from textbox is present in the line extracted; if YES then CONTINUE 
+                var position = line.IndexOf(date_appointment, StringComparison.InvariantCultureIgnoreCase);
+
+                if (position > -1)
+                {
+                    // the date of appointment, for which we are searching for, is present in the line extracted. 
+                }
+            }
+            file.Close();
+
+            return res;
+        }
+/******************************************************************************************/
     }
 }

@@ -352,7 +352,7 @@
                     </GroupBox>
                     <TextBlock Name="textBlock_all_appointments"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="430"  Text="see here all the appointments in database" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="5,0,0,0"  />
                     <TextBlock Name="textBlock_appointments_of_today" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="361" Text="see here all the appointments of today" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="11,0,0,0" Grid.Column="1" />
-                    <GroupBox Header="delete appointment" Margin="332,33,349,585" Grid.ColumnSpan="2">
+                    <GroupBox Header="delete appointment" Margin="332,33,349,501" Grid.ColumnSpan="2">
                         <Grid Margin="14,10,-2,10">
                             <Grid.Resources>
                                 <VisualBrush x:Key="Appointment_last_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
@@ -415,7 +415,7 @@
                             </ComboBox>
                             <Label Content="Start time" HorizontalAlignment="Left" Height="24" Margin="133,33,0,0" VerticalAlignment="Top" Width="62"/>
                             <Label Content="Appointment day" HorizontalAlignment="Left" Height="24" Margin="6,33,0,0" VerticalAlignment="Top" Width="115"/>
-                            <ListBox Name="listbox_appointments_to_be_deleted" HorizontalAlignment="Left" Height="94" Margin="0,90,0,0" VerticalAlignment="Top" Width="352" Grid.RowSpan="2">
+                            <ListBox Name="listbox_appointments_to_be_deleted" HorizontalAlignment="Left" Height="143" Margin="0,90,0,0" VerticalAlignment="Top" Width="352" Grid.RowSpan="2" SelectionChanged="selectie_o_linie_din_listbox" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">

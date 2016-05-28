@@ -17,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
+
+
 namespace WpfApplication2
 {
     /// <summary>
@@ -35,6 +37,7 @@ namespace WpfApplication2
 
         string path = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyTest.txt";
         string path1 = @"MyAppointmentList.txt";
+        string path_temporary_file = @"MyTemporaryFile.txt";
         string path_medications = @"MyMedicationList1.txt";
         string mesaj = " ";
         string search_text = "";
@@ -568,7 +571,41 @@ namespace WpfApplication2
 
         private void click_delete_appointment_from_database(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            //MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            var item_selectat_din_listbox = listbox_appointments_to_be_deleted.SelectedItem.ToString();
+            var date_to_be_deleted = func_extract_date_of_appointment(item_selectat_din_listbox);
+            var index_de_sters = listbox_appointments_to_be_deleted.SelectedIndex;
+
+            //aici stergem pe bune din fisier..
+            string path_temporary_file = System.IO.Path.GetTempFileName();
+            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+
+                var position = line.IndexOf(date_to_be_deleted, StringComparison.InvariantCultureIgnoreCase);
+                if (position > -1)
+                {
+                    // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
+                    line = "asa da - ceva am gasit";
+                }
+                else
+                {
+                    //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
+                    file_temporary.WriteLine(line);
+                }
+            }
+            file.Close();
+            file_temporary.Close();
+            File.Delete(path1);
+            File.Move(path_temporary_file, path1);
+
+            //la final vreau sa si sterg itemul selectat din listbox
+            
+            listbox_appointments_to_be_deleted.Items.RemoveAt(index_de_sters);
+
+
         }
 
         private void button_add_new_equipments(object sender, RoutedEventArgs e)
@@ -1038,9 +1075,81 @@ namespace WpfApplication2
         {
             List<string> lines = new List<string>();
             int j = 0;
-            
-            if (appointment_last_name_delete_textBox.Text.ToString() != "")
+            /* cod bun de folosit !!!!!!! */
+            //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
+            /******************************************************************************************/
+            //func_search_last_name_in_appointments_db(appointment_last_name_delete_textBox.Text.ToString());
+            //func_search_first_name_in_appointments_db(appointment_first_name_delete_textBox.Text.ToString());
+            int scenariu = 100;
+            var data_app = datepicker_date_appointment_for_clear.Text.ToString();
+            var last_name = appointment_last_name_delete_textBox.Text.ToString();
+            var first_name = appointment_first_name_delete_textBox.Text.ToString();
+
+            //delete the listbox complete
+            listbox_appointments_to_be_deleted.Items.Clear();
+
+            if (last_name != "")
             {
+                scenariu = 1;
+            }
+            if(first_name != "")
+            {
+                scenariu = 2;
+            }
+            if(data_app != "")
+            {
+                scenariu = 3;
+            }
+            if((last_name != "") && (first_name != ""))
+            {
+                scenariu = 4;
+            }
+            if ((last_name != "") && (first_name != "") && (data_app != ""))
+            {
+                scenariu = 5;
+            }
+
+            switch (scenariu)
+            {
+                case 1:
+                    {
+                        MessageBox.Show("ai setat last name - nefunctional momentan");
+                        break;
+                    }
+                case 2:
+                    {
+                        MessageBox.Show("ai setat first name - nefunctional momentan");
+                        break;
+                    }
+                case 3:
+                    {
+                        data_app = Convert.ToDateTime(data_app).ToString("dd.MM.yyyy");
+                        //func_search_date_of_appointment_in_db(data_app);
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(data_app);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        MessageBox.Show("ai setat first name si last name - nefunctional momentan");
+                        break;
+                    }
+                case 5:
+                    {
+                        MessageBox.Show("ai setat first name, last name si data - nefunctional momentan");
+                        break;
+                    }
+            }
+                     
+                        
+            /******************************************************************************************/
+
+         /*   if (appointment_last_name_delete_textBox.Text.ToString() != "")
+            {
+                
                 using (StreamReader file = new StreamReader(path1))
                 {
                     string line;
@@ -1054,17 +1163,33 @@ namespace WpfApplication2
                     }
                     file.Close();
                 }
-                
-                foreach (var item in lines)          
+
+                foreach (var item in lines)
                 {
                     listbox_appointments_to_be_deleted.Items.Add(item);
                 }
+                
             }
             else
             {
                 listbox_appointments_to_be_deleted.Items.Clear();
             }
+            */
                                    
+        }
+
+        private void selectie_o_linie_din_listbox(object sender, SelectionChangedEventArgs e)
+        {
+            //var item_selectat_din_listbox = "~~~~~~~";
+            //if (listbox_appointments_to_be_deleted.Items.Count > 0)
+            //{
+            //    item_selectat_din_listbox = listbox_appointments_to_be_deleted.SelectedItem.ToString();
+            //}
+            //aici procesam stergerea
+            //item_selectat_din_listbox
+
+
+//            MessageBox.Show("asta am selectat: " + item_selectat_din_listbox);
         }
     }
 }
