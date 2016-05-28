@@ -240,18 +240,22 @@ namespace WpfApplication2
         {
             
             var lista = new List<string>();
+            int jj = 0;
 
             System.IO.StreamReader file = new System.IO.StreamReader(path1);
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
-
-                var position = line.IndexOf(data_curenta, StringComparison.InvariantCultureIgnoreCase);
-                if (position > -1)
+                if (jj > 3)
                 {
-                    lista.Add(line);
-                    
+                    var position = line.IndexOf(data_curenta, StringComparison.InvariantCultureIgnoreCase);
+                    if (position > -1)
+                    {
+                        lista.Add(line);
+
+                    }
                 }
+                jj++;
             }
             file.Close();
             return lista;

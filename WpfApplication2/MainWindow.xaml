@@ -352,7 +352,7 @@
                     </GroupBox>
                     <TextBlock Name="textBlock_all_appointments"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="430"  Text="see here all the appointments in database" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="5,0,0,0"  />
                     <TextBlock Name="textBlock_appointments_of_today" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="361" Text="see here all the appointments of today" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="11,0,0,0" Grid.Column="1" />
-                    <GroupBox Header="delete appointment" Margin="332,33,349,501" Grid.ColumnSpan="2">
+                    <GroupBox Header="delete appointment" Margin="332,33,349,573" Grid.ColumnSpan="2">
                         <Grid Margin="14,10,-2,10">
                             <Grid.Resources>
                                 <VisualBrush x:Key="Appointment_last_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
@@ -376,8 +376,8 @@
                                 <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
 
-                            <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="6,63,0,0" Name="button27" VerticalAlignment="Top" Width="122" Grid.Row="1" />
-                            <TextBox Height="28" HorizontalAlignment="Left" Margin="6,0,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" LostFocus="lost_focus__lastname_show_all_appointments">
+                            <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="0,42,0,0" Name="button27" VerticalAlignment="Top" Width="122" Grid.Row="1" />
+                            <TextBox Height="28" HorizontalAlignment="Left" Margin="6,16,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" LostFocus="lost_focus__lastname_show_all_appointments">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -389,7 +389,7 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,0,131,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseWheel="afiseaza_appointments_in_listbox_1">
+                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,16,138,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseWheel="afiseaza_appointments_in_listbox_1" LostFocus="lost_focus__firstname_show_all_appointments">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -401,21 +401,13 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <DatePicker x:Name="datepicker_date_appointment_for_clear" HorizontalAlignment="Left" Margin="6,62,0,0" VerticalAlignment="Top" Width="119" Height="23" MouseLeave="appointment_delete_date_colors_notification">
+                            <DatePicker x:Name="datepicker_date_appointment_for_clear" HorizontalAlignment="Left" Margin="233,21,0,0" VerticalAlignment="Top" Width="119" Height="23" MouseLeave="appointment_delete_date_colors_notification" LostFocus="lost_focus__datepicker_delete_show_all_appointments">
                                 <DatePicker.ToolTip>
                                     <ToolTip Content="! choose a day for appointment !"/>
                                 </DatePicker.ToolTip>
                             </DatePicker>
-                            <ComboBox x:Name="Pick_start_hour_appointment_Copy" HorizontalAlignment="Left" Height="23" Margin="133,62,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_start_hour_appointment_Loaded" SelectionChanged="Pick_start_hour_appointment_SelectionChanged" MouseLeave="clear_colors_notification_start_time_combobox" RenderTransformOrigin="0.532,1.576" >
-                                <ComboBox.ToolTip>
-                                    <ToolTip>
-                                        ! start time of appointment to be deleted !"/>
-                                    </ToolTip>
-                                </ComboBox.ToolTip>
-                            </ComboBox>
-                            <Label Content="Start time" HorizontalAlignment="Left" Height="24" Margin="133,33,0,0" VerticalAlignment="Top" Width="62"/>
-                            <Label Content="Appointment day" HorizontalAlignment="Left" Height="24" Margin="6,33,0,0" VerticalAlignment="Top" Width="115"/>
-                            <ListBox Name="listbox_appointments_to_be_deleted" HorizontalAlignment="Left" Height="143" Margin="0,90,0,0" VerticalAlignment="Top" Width="352" Grid.RowSpan="2" SelectionChanged="selectie_o_linie_din_listbox" >
+                            <Label Content="Appointment day" HorizontalAlignment="Left" Height="29" Margin="233,-8,0,0" VerticalAlignment="Top" Width="115"/>
+                            <ListBox Name="listbox_appointments_to_be_deleted" HorizontalAlignment="Left" Height="123" Margin="0,49,0,0" VerticalAlignment="Top" Width="352" SelectionChanged="selectie_o_linie_din_listbox" Grid.RowSpan="2" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
