@@ -997,130 +997,12 @@ namespace WpfApplication2
             Pick_stop_hour_appointment.BorderBrush = Brushes.LightGray;
         }
 
-        private void afiseaza_appointments_in_listbox_1(object sender, MouseWheelEventArgs e)
-        {
-           /* List<string> lines = new List<string>();
-            using (StreamReader r = new StreamReader(path1))
-            {
-                string line;
-             while ((line = r.ReadLine()) != null)
-             {
-                 lines.Add(line);
-             }
-            }
-
-            foreach (var item in lines)
-            {
-                listbox_appointments_to_be_deleted.Items.Add(item);
-            }
-            
-            //aici tre sa mai fac sa se vada exact caracterele din lista         
-            mesaj = "-> intrat functia de scrie listbox_delete  <-";
-            action_window_update(mesaj);
-            */
-        }
-
-        private void lost_focus__lastname_show_all_appointments(object sender, RoutedEventArgs e)
-        {
-            List<string> lines = new List<string>();
-            int j = 0;
-            /* cod bun de folosit !!!!!!! */
-            //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
-            /******************************************************************************************/
-            //func_search_last_name_in_appointments_db(appointment_last_name_delete_textBox.Text.ToString());
-            //func_search_first_name_in_appointments_db(appointment_first_name_delete_textBox.Text.ToString());
-            int scenariu = 100;
-            var data_app = datepicker_date_appointment_for_clear.Text.ToString();
-            var last_name = appointment_last_name_delete_textBox.Text.ToString();
-            var first_name = appointment_first_name_delete_textBox.Text.ToString();
-
-            //delete the listbox complete
-            listbox_appointments_to_be_deleted.Items.Clear();
-
-            if (last_name != "")
-            {
-                scenariu = 1;
-            }
-            if(first_name != "")
-            {
-                scenariu = 2;
-            }
-            if(data_app != "")
-            {
-                scenariu = 3;
-            }
-            if((last_name != "") && (first_name != ""))
-            {
-                scenariu = 4;
-            }
-            if ((last_name != "") && (first_name != "") && (data_app != ""))
-            {
-                scenariu = 5;
-            }
-
-            switch (scenariu)
-            {
-                case 1:
-                    {
-                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(last_name);
-                        foreach (var item in toata_cautarea)
-                        {
-                            listbox_appointments_to_be_deleted.Items.Add(item);
-                            listbox_appointments_to_be_deleted.Background = Brushes.LightPink;
-                        }
-                        break;
-                    }
-                case 2:
-                    {
-                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(first_name);
-                        foreach (var item in toata_cautarea)
-                        {
-                            listbox_appointments_to_be_deleted.Items.Add(item);
-                        }
-                        break;
-                    }
-                case 3:
-                    {
-                        data_app = Convert.ToDateTime(data_app).ToString("dd.MM.yyyy");
-                        //func_search_date_of_appointment_in_db(data_app);
-                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(data_app);
-                        foreach (var item in toata_cautarea)
-                        {
-                            listbox_appointments_to_be_deleted.Items.Add(item);
-                        }
-                        break;
-                    }
-                case 4:
-                    {
-                        var lastname_and_firstname = last_name + " " + first_name;
-                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(lastname_and_firstname);
-                        foreach (var item in toata_cautarea)
-                        {
-                            listbox_appointments_to_be_deleted.Items.Add(item);
-                        }
-                        break;
-                    }
-                case 5:
-                    {
-                        data_app = Convert.ToDateTime(data_app).ToString("dd.MM.yyyy");
-                        var lastname_and_firstname_and_date = last_name + " " + first_name + "  |"+ data_app;
-                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(lastname_and_firstname_and_date);
-                        foreach (var item in toata_cautarea)
-                        {
-                            listbox_appointments_to_be_deleted.Items.Add(item);
-                        }
-                        break;
-                    }
-            }
-                                   
-        }
-
         private void selectie_o_linie_din_listbox(object sender, SelectionChangedEventArgs e)
         {
             
         }
-
-        private void lost_focus__firstname_show_all_appointments(object sender, RoutedEventArgs e)
+        
+                private void keyUP_lastname_focus_search_appointments(object sender, KeyEventArgs e)
         {
             List<string> lines = new List<string>();
             int j = 0;
@@ -1214,7 +1096,8 @@ namespace WpfApplication2
             }
         }
 
-        private void lost_focus__datepicker_delete_show_all_appointments(object sender, RoutedEventArgs e)
+        
+        private void KeyUP_firstname_search_appointments(object sender, KeyEventArgs e)
         {
             List<string> lines = new List<string>();
             int j = 0;
@@ -1307,6 +1190,101 @@ namespace WpfApplication2
                     }
             }
         }
+
+        private void KeyUP_date_appointment_search_appointments(object sender, KeyEventArgs e)
+        {
+            List<string> lines = new List<string>();
+            int j = 0;
+            /* cod bun de folosit !!!!!!! */
+            //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
+            /******************************************************************************************/
+            //func_search_last_name_in_appointments_db(appointment_last_name_delete_textBox.Text.ToString());
+            //func_search_first_name_in_appointments_db(appointment_first_name_delete_textBox.Text.ToString());
+            int scenariu = 100;
+            var data_app = datepicker_date_appointment_for_clear.Text.ToString();
+            var last_name = appointment_last_name_delete_textBox.Text.ToString();
+            var first_name = appointment_first_name_delete_textBox.Text.ToString();
+
+            //delete the listbox complete
+            listbox_appointments_to_be_deleted.Items.Clear();
+
+            if (last_name != "")
+            {
+                scenariu = 1;
+            }
+            if (first_name != "")
+            {
+                scenariu = 2;
+            }
+            if (data_app != "")
+            {
+                scenariu = 3;
+            }
+            if ((last_name != "") && (first_name != ""))
+            {
+                scenariu = 4;
+            }
+            if ((last_name != "") && (first_name != "") && (data_app != ""))
+            {
+                scenariu = 5;
+            }
+
+            switch (scenariu)
+            {
+                case 1:
+                    {
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(last_name);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                            listbox_appointments_to_be_deleted.Background = Brushes.LightPink;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(first_name);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        data_app = Convert.ToDateTime(data_app).ToString("dd.MM.yyyy");
+                        //func_search_date_of_appointment_in_db(data_app);
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(data_app);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                        }
+                        break;
+                    }
+                case 4:
+                    {
+                        var lastname_and_firstname = last_name + " " + first_name;
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(lastname_and_firstname);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                        }
+                        break;
+                    }
+                case 5:
+                    {
+                        data_app = Convert.ToDateTime(data_app).ToString("dd.MM.yyyy");
+                        var lastname_and_firstname_and_date = last_name + " " + first_name + "  |" + data_app;
+                        var toata_cautarea = func_get_all_lines_with_today_date_in_list(lastname_and_firstname_and_date);
+                        foreach (var item in toata_cautarea)
+                        {
+                            listbox_appointments_to_be_deleted.Items.Add(item);
+                        }
+                        break;
+                    }
+            }
+        }
+
     }
 }
 
