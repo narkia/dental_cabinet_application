@@ -390,7 +390,7 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,16,138,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" MouseWheel="afiseaza_appointments_in_listbox_1" KeyUp="KeyUP_firstname_search_appointments">
+                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,16,138,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="KeyUP_firstname_search_appointments">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
