@@ -175,7 +175,16 @@ namespace WpfApplication2
         *************************************************************************************/
         private void button_write_all_appointments_in_textbox(object sender, RoutedEventArgs e)
         {
-            write_appointements_from_file_to_textblock();
+            if (File.Exists(path1))
+            {
+                write_appointements_from_file_to_textblock();
+            }
+            else
+            {
+                MessageBox.Show("There is no appointment set in database. Nothing to show yet!","Atention!");
+            }
+
+
         }
 
         private void write_appointements_from_file_to_textblock()
@@ -196,7 +205,16 @@ namespace WpfApplication2
         *************************************************************************************/
         private void button_write_appointments_of_today_in_textblock(object sender, RoutedEventArgs e)
         {
-            write_appointments_of_today_from_file_to_textblock();
+            if (File.Exists(path1))
+            {
+                write_appointments_of_today_from_file_to_textblock();
+            }
+            else
+            {
+                MessageBox.Show("No appointments in database yet. Nothing to search for!", "Attention");
+            }
+
+
         }
 
         private void write_appointments_of_today_from_file_to_textblock()
@@ -239,7 +257,8 @@ namespace WpfApplication2
         private List<string> func_get_all_lines_with_today_date_in_list(string data_curenta)
         {
             
-            var lista = new List<string>();
+            List<string> lista = new List<string>();
+
             int jj = 0;
 
             System.IO.StreamReader file = new System.IO.StreamReader(path1);
