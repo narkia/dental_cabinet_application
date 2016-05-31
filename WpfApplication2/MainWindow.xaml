@@ -15,13 +15,14 @@
                 <Grid Background="#FF936870">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120*"/>
-                        <ColumnDefinition Width="947*"/>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="937*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Buna sa-ti fie inima!" Height="25" HorizontalAlignment="Left" Margin="5,3,0,0" Name="label0" VerticalAlignment="Top" Width="119" Grid.ColumnSpan="2" />
-                    <Calendar Height="223" HorizontalAlignment="Left" Margin="7,38,0,0" Name="calendar1" VerticalAlignment="Top" Width="210" Grid.ColumnSpan="2" />
+                    <Calendar Height="223" HorizontalAlignment="Left" Margin="7,38,0,0" Name="calendar1" VerticalAlignment="Top" Width="210" Grid.ColumnSpan="3" />
                     <!--DatePicker Height="25" HorizontalAlignment="Left" Margin="777,13,0,0" Name="datePicker1" VerticalAlignment="Top" Width="186" SelectedDateChanged="functie_data_schimbata" />-->
-                    <TextBlock Name="textBlock_welcome_appointments_of_today" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="272" Text=" Here you will see all the appointments for today." Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="596,0,0,7" Grid.Column="1" />
-                    <GroupBox Header="global search" Height="95" HorizontalAlignment="Left" Margin="111,37,0,0" Name="global_search_groupbox" VerticalAlignment="Top" Width="230" Grid.Column="1">
+                    <TextBlock Name="textBlock_welcome_appointments_of_today" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="272" Text=" Here you will see all the appointments for today." Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="586,0,0,7" Grid.Column="2" />
+                    <GroupBox Header="global search" Height="95" HorizontalAlignment="Left" Margin="101,37,0,0" Name="global_search_groupbox" VerticalAlignment="Top" Width="230" Grid.Column="2">
                         <Grid Height="69" Width="197">
                             <Grid.Resources>
                                 <VisualBrush x:Key="Welcome_global_search_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
@@ -52,15 +53,15 @@
                             <Button Name="global_search_button" Content="Search" Margin="1,9,0,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
                         </Grid>
                     </GroupBox>
-                    <TextBlock Name="global_search_textblock" Background="Beige" HorizontalAlignment="Left" Margin="69,0,0,6" ScrollViewer.VerticalScrollBarVisibility="Auto" Text=" Here you will see the global search result." VerticalAlignment="Bottom" Width="377" Height="16" Grid.Column="1" />
-                    <GroupBox Header="important info for today" Height="122" HorizontalAlignment="Left" Margin="111,139,0,0" Name="important_info_for_today_groupBox" VerticalAlignment="Top" Width="230" Grid.Column="1">
+                    <TextBlock Name="global_search_textblock" Background="Beige" HorizontalAlignment="Left" Margin="59,0,0,6" ScrollViewer.VerticalScrollBarVisibility="Auto" Text=" Here you will see the global search result." VerticalAlignment="Bottom" Width="377" Height="16" Grid.Column="2" />
+                    <GroupBox Header="important info for today" Height="122" HorizontalAlignment="Left" Margin="101,139,0,0" Name="important_info_for_today_groupBox" VerticalAlignment="Top" Width="230" Grid.Column="2">
                         <Grid Height="97">
                             <Button Content="see all appointments of today" Height="25" HorizontalAlignment="Left" Margin="16,0,0,0" Name="button7" VerticalAlignment="Top" Width="182" Click="button_func_all_appointments_of_today_welcome_page" />
                             <Button Content="see missing medications" Height="25" HorizontalAlignment="Left" Margin="16,32,0,0" Name="button3" VerticalAlignment="Top" Width="182" />
                             <Button Content="see all treatments for today" Height="25" HorizontalAlignment="Left" Margin="16,63,0,0" Name="button4" VerticalAlignment="Top" Width="182" />
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="appointments search" Height="223" HorizontalAlignment="Right" Margin="0,37,333,0" Name="appointments_search_groupbox" VerticalAlignment="Top" Width="256" Grid.Column="1">
+                    <GroupBox Header="appointments search" Height="223" HorizontalAlignment="Right" Margin="0,37,333,0" Name="appointments_search_groupbox" VerticalAlignment="Top" Width="256" Grid.Column="2">
                         <Grid>
                             <TextBox FontSize="16" Height="34" Margin="6,78,102,9" Name="all_appointments_specific_day_textbox" />
                             <Button Content="Search" Height="34" Margin="0,14,6,0" Name="all_appointments_specific_day_button" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" />
@@ -69,7 +70,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Name="tab2" Header="Patients" TabIndex="2" MouseUp="patient_tab_mouseup" >
+            <TabItem Name="tab2" Header="Patients" TabIndex="2" MouseUp="patient_tab_mouseup" Height="23" VerticalAlignment="Bottom" >
                 <Grid Background="#FF936870" Width="1194" Height="962">
                     <GroupBox Header="add patient" Margin="14,25,816,724">
                         <Grid Height="175">
@@ -169,7 +170,7 @@
                                 </DatePicker.ToolTip>
                             </DatePicker>
 
-                            <Button  MouseEnter="mouse_enter_button1" Click="buton_1_click" Name="buton_1" Width="92" HorizontalAlignment="Left" Margin="1,101,0,35" Grid.Column="1">Add in database</Button>
+                            <Button  MouseEnter="mouse_enter_button1" Click="add_new_patient_click" Name="buton_1" Width="92" HorizontalAlignment="Left" Margin="1,101,0,35" Grid.Column="1">Add in database</Button>
                             <Button  Click="buton_3_click" Name="buton_3" Width="104" HorizontalAlignment="Left" Margin="98,101,0,35" Grid.Column="1">Write in textblock</Button>
                             <Button  Click="buton_4_click" Name="buton_4" Width="100" HorizontalAlignment="Right" Margin="0,101,38,35" Grid.Column="1" RenderTransformOrigin="-0.29,0.41">Delete textblock</Button>
                             <TextBox Height="26" HorizontalAlignment="Left" Margin="293,6,0,143" x:Name="textBox_patient_adresa_street_number" VerticalAlignment="Center" Width="46" Grid.Column="1" RenderTransformOrigin="0.587,0.077" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black">

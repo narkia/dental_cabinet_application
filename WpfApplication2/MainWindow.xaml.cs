@@ -569,41 +569,48 @@ namespace WpfApplication2
 
         private void click_delete_appointment_from_database(object sender, RoutedEventArgs e)
         {
-                        if (File.Exists(path1))
+            if (File.Exists(path1))
             {
-                string item_selectat_din_listbox = listbox_appointments_to_be_deleted.SelectedItem.ToString();
-                string date_to_be_deleted = func_extract_date_of_appointment(item_selectat_din_listbox);
-                int index_de_sters = listbox_appointments_to_be_deleted.SelectedIndex;
-            
-                //aici stergem pe bune din fisier..
-                string path_temporary_file = System.IO.Path.GetTempFileName();
-                System.IO.StreamReader file = new System.IO.StreamReader(path1);
-                System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
-                string line = "";
-                while ((line = file.ReadLine()) != null)
+                if (listbox_appointments_to_be_deleted.HasItems)
                 {
+                    string item_selectat_din_listbox = listbox_appointments_to_be_deleted.SelectedItem.ToString();
+                    string date_to_be_deleted = func_extract_date_of_appointment(item_selectat_din_listbox);
+                    int index_de_sters = listbox_appointments_to_be_deleted.SelectedIndex;
 
-                    var position = line.IndexOf(item_selectat_din_listbox, StringComparison.InvariantCultureIgnoreCase);
-                    if (position > -1)
+                    //aici stergem pe bune din fisier..
+                    string path_temporary_file = System.IO.Path.GetTempFileName();
+                    System.IO.StreamReader file = new System.IO.StreamReader(path1);
+                    System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
+                    string line = "";
+                    while ((line = file.ReadLine()) != null)
                     {
-                        // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
-                        line = "asa da - ceva am gasit";
+
+                        var position = line.IndexOf(item_selectat_din_listbox, StringComparison.InvariantCultureIgnoreCase);
+                        if (position > -1)
+                        {
+                            // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
+                            line = "asa da - ceva am gasit";
+                        }
+                        else
+                        {
+                            //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
+                            file_temporary.WriteLine(line);
+                        }
                     }
-                    else
-                    {
-                        //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
-                        file_temporary.WriteLine(line);
-                    }
+
+                    file.Close();
+                    file_temporary.Close();
+                    File.Delete(path1);
+                    File.Move(path_temporary_file, path1);
+
+                    //la final vreau sa si sterg itemul selectat din listbox
+
+                    listbox_appointments_to_be_deleted.Items.RemoveAt(index_de_sters);
                 }
-
-                file.Close();
-                file_temporary.Close();
-                File.Delete(path1);
-                File.Move(path_temporary_file, path1);
-
-                //la final vreau sa si sterg itemul selectat din listbox
-
-                listbox_appointments_to_be_deleted.Items.RemoveAt(index_de_sters);
+                else
+                {
+                    MessageBox.Show("You must search an appointment first! After that you can delete it!","Attention!");
+                }
             }
             else
             {
@@ -1608,6 +1615,11 @@ namespace WpfApplication2
             add_patient_to_file();
             mesaj = "-> click pe but *Copiaza* <-";
             action_window_update(mesaj);
+        }
+
+        private void buton_1_click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
