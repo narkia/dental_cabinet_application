@@ -377,7 +377,7 @@
                             </Grid.RowDefinitions>
 
                             <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="0,42,0,0" Name="button27" VerticalAlignment="Top" Width="122" Grid.Row="1" />
-                            <TextBox Height="28" HorizontalAlignment="Left" Margin="6,16,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="keyUP_lastname_focus_search_appointments">
+                            <TextBox Height="28" HorizontalAlignment="Left" Margin="6,16,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="keyUP_lastname_focus_search_appointments1">
 
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
@@ -390,7 +390,7 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,16,138,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="KeyUP_firstname_search_appointments">
+                            <TextBox Height="28" HorizontalAlignment="Right" Margin="0,16,138,0" Name="appointment_first_name_delete_textBox" VerticalAlignment="Top" Width="112" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="KeyUP_firstname_search_appointments1">
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -402,7 +402,7 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-                            <DatePicker x:Name="datepicker_date_appointment_for_clear" HorizontalAlignment="Left" Margin="233,21,0,0" VerticalAlignment="Top" Width="119" Height="23" KeyUp="KeyUP_date_appointment_search_appointments">
+                            <DatePicker x:Name="datepicker_date_appointment_for_clear" HorizontalAlignment="Left" Margin="233,21,0,0" VerticalAlignment="Top" Width="119" Height="23" KeyUp="KeyUP_date_appointment_search_appointments1">
 
                                 <DatePicker.ToolTip>
                                     <ToolTip Content="! choose a day for appointment !"/>
