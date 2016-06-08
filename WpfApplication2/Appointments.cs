@@ -265,7 +265,7 @@ namespace WpfApplication2
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
-                if (jj > 3)
+                if (jj > 2)
                 {
                     var position = line.IndexOf(data_curenta, StringComparison.InvariantCultureIgnoreCase);
                     if (position > -1)
@@ -292,7 +292,7 @@ namespace WpfApplication2
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
-                if (jj > 3)
+                if (jj > 2)
                 {
                     var position = line.IndexOf(namee, StringComparison.InvariantCultureIgnoreCase);
                     if (position > -1)
