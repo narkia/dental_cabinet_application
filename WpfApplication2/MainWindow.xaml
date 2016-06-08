@@ -226,7 +226,7 @@
                             	</Grid.Resources>
 
                         	
-                            <TextBox Text="nume pacient" FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="0,19,156,51">
+                            <TextBox FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="0,19,156,51" KeyUp="keyUp_delete_patient_name_textbox" >
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
