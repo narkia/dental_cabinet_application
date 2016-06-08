@@ -279,6 +279,35 @@ namespace WpfApplication2
             file.Close();
             return lista;
         }
+        
+        
+        private List<string> func_get_all_lines_with_patient_name_in_list(string namee)
+        {
+
+            List<string> lista = new List<string>();
+
+            int jj = 0;
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+                if (jj > 3)
+                {
+                    var position = line.IndexOf(namee, StringComparison.InvariantCultureIgnoreCase);
+                    if (position > -1)
+                    {
+                        lista.Add(line);
+
+                    }
+                }
+                jj++;
+            }
+            file.Close();
+            return lista;
+        }
+
+        
         /*************************************************************************************
         * ***********************************************************************************
         * Function name:       button_func_all_appointments_of_today_welcome_page()
