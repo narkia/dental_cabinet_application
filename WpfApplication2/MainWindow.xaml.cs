@@ -291,8 +291,60 @@ namespace WpfApplication2
 *************************************************************************************/
         private void Click_delete_patient_from_file(object sender, RoutedEventArgs e)
         {
-            string cuvant = textbox_delete_word.Text.ToString();
-            delete_patient_from_file(cuvant);
+            //string cuvant = textbox_delete_word.Text.ToString();
+            //delete_patient_from_file(cuvant);
+            
+                        //string cuvant = listbox_patients_to_be_deleted.SelectedItem.ToString();
+            //delete_patient_from_file(cuvant);
+            if (File.Exists(path))
+            {
+                if (listbox_patients_to_be_deleted.HasItems)
+                {
+                    string item_selectat_din_listbox = listbox_patients_to_be_deleted.SelectedItem.ToString();
+                    int index_de_sters = listbox_patients_to_be_deleted.SelectedIndex;
+
+                    //aici stergem pe bune din fisier..
+                    string path_temporary_file = System.IO.Path.GetTempFileName();
+                    System.IO.StreamReader file = new System.IO.StreamReader(path);
+                    System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
+                    string line = "";
+                    while ((line = file.ReadLine()) != null)
+                    {
+
+                        var position = line.IndexOf(item_selectat_din_listbox, StringComparison.InvariantCultureIgnoreCase);
+                        if (position > -1)
+                        {
+                            // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
+                            line = "asa da - ceva am gasit";
+                        }
+                        else
+                        {
+                            //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
+                            file_temporary.WriteLine(line);
+                        }
+                    }
+
+                    file.Close();
+                    file_temporary.Close();
+                    File.Delete(path);
+                    File.Move(path_temporary_file, path);
+
+                    //la final vreau sa si sterg itemul selectat din listbox
+
+                    listbox_patients_to_be_deleted.Items.RemoveAt(index_de_sters);
+                }
+                else
+                {
+                    MessageBox.Show("You must search a patient first! After that you can delete it!", "Attention!");
+                }
+            }
+            else
+            {
+                MessageBox.Show(" There is no patient set in database yet. You have nothing to delete!", "Atention!");
+            }
+
+            
+
 
             mesaj = "-> apasat buton *Sterge* <-";
             action_window_update(mesaj);
@@ -1621,6 +1673,37 @@ namespace WpfApplication2
         {
 
         }
+        
+                private void selectie_o_linie_din_patient_listbox_to_delete(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void keyUp_delete_patient_name_textbox(object sender, KeyEventArgs e)
+        {
+            if (File.Exists(path))
+            {
+                List<string> lines = new List<string>();
+                string first_name = textbox_delete_word.Text.ToString();
+
+                //delete the listbox complete
+                listbox_patients_to_be_deleted.Items.Clear();
+
+                if (first_name != "")
+                {
+                    var toata_cautarea = func_get_all_lines_with_patient_name_in_list(first_name);
+                    foreach (var item in toata_cautarea)
+                    {
+                        listbox_patients_to_be_deleted.Items.Add(item);
+                    }
+                }                             
+            }
+            else
+            {
+                MessageBox.Show("No patients in database yet. Nothing to search for!", "Attention");
+            }
+        }
+
     }
 }
 
