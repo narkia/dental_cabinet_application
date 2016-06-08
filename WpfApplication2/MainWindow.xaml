@@ -215,13 +215,47 @@
 
                     <GroupBox Header="delete patient" Margin="14,267,861,557">
                         <Grid Height="107" Width="297">
-                            <TextBox Text="nume pacient" FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="0,19,156,51"></TextBox>
+                		<Grid.Resources>
+	                                <VisualBrush x:Key="Patient_name_hint_for_delete" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+	                                    <VisualBrush.Visual>
+	                                        <Grid HorizontalAlignment="Center">
+	                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Patient name" Background="White" />
+	                                        </Grid>
+	                                    </VisualBrush.Visual>
+	                                </VisualBrush>
+                            	</Grid.Resources>
+
+                        	
+                            <TextBox Text="nume pacient" FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="0,19,156,51">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=textbox_delete_word,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource Patient_name_hint_for_delete}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+	
                             <Button MouseEnter="mouse_enter_button2" Click="Click_delete_patient_from_file" Name="buton_2" Width="95" HorizontalAlignment="Right" Margin="0,19,55,51">sterge pacient
                                 <Button.ToolTip>
                                     <ToolTip>! daca apesi acest buton o sa se stearga din databse
                             orice field ce contine cuvantul introdus in textbox!</ToolTip>
                                 </Button.ToolTip>
                             </Button>
+                            <ListBox Name="listbox_patients_to_be_deleted" HorizontalAlignment="Left" Height="161" Margin="14,55,0,0" VerticalAlignment="Top" Width="228" SelectionChanged="selectie_o_linie_din_patient_listbox_to_delete" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            
                         </Grid>
                     </GroupBox>
 
