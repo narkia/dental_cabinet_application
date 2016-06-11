@@ -1713,20 +1713,22 @@ namespace WpfApplication2
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress("narcis.scirlatache@gmail.com");
                 mail.To.Add("narcis.scirlatache@gmail.com");
-                mail.Subject = "Test Mail - 2";
-                mail.Body = "mail with attachment";
+                mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                mail.Body = "mail with attachments.. in case of losing of files";
 
                 System.Net.Mail.Attachment attachment;
                 attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
                 mail.Attachments.Add(attachment);
                 attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
                 mail.Attachments.Add(attachment);
+                attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                mail.Attachments.Add(attachment);
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                MessageBox.Show("Mail sent with success! ;)");
+                MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
             }
             catch (Exception ex)
             {
