@@ -68,11 +68,16 @@
                             <ComboBox Height="34" HorizontalAlignment="Left" Margin="6,14,0,0" Name="all_appointments_specific_day_comboBox" VerticalAlignment="Top" Width="118" />
                         </Grid>
                     </GroupBox>
+                    <Button x:Name="button_send_email_with_attachments" Content="Send e-mail" Grid.Column="2" HorizontalAlignment="Left" Margin="216,346,0,0" VerticalAlignment="Top" Width="75" Click="send_e_mail_with_attachments" />
                 </Grid>
             </TabItem>
             <TabItem Name="tab2" Header="Patients" TabIndex="2" MouseUp="patient_tab_mouseup" Height="23" VerticalAlignment="Bottom" >
-                <Grid Background="#FF936870" Width="1194" Height="962">
-                    <GroupBox Header="add patient" Margin="14,25,816,724">
+                <Grid Background="#FF936870" Width="1194" Height="962" Margin="0,0,-127,-89">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="49*"/>
+                        <ColumnDefinition Width="1145*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="add patient" Margin="14,25,816,724" Grid.ColumnSpan="2">
                         <Grid Height="175">
                             <Grid.Resources>
                                 <VisualBrush x:Key="Patient_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
@@ -213,20 +218,20 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="delete patient" Margin="14,267,861,557">
+                    <GroupBox Header="delete patient" Margin="10,243,799,470" Grid.ColumnSpan="2">
                         <Grid Height="107" Width="297">
-                		<Grid.Resources>
-	                                <VisualBrush x:Key="Patient_name_hint_for_delete" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
-	                                    <VisualBrush.Visual>
-	                                        <Grid HorizontalAlignment="Center">
-	                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Patient name" Background="White" />
-	                                        </Grid>
-	                                    </VisualBrush.Visual>
-	                                </VisualBrush>
-                            	</Grid.Resources>
+                            <Grid.Resources>
+                                <VisualBrush x:Key="Patient_name_hint_for_delete" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Patient name" Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.Resources>
 
-                        	
-                            <TextBox FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="0,19,156,51" KeyUp="keyUp_delete_patient_name_textbox" >
+
+                            <TextBox FontSize="14" Name="textbox_delete_word" HorizontalAlignment="Right" VerticalAlignment="Center" Height="37" Width="128" Margin="-22,-51,191,121" KeyUp="keyUp_delete_patient_name_textbox" >
                                 <TextBox.Style>
                                     <Style TargetType="{x:Type TextBox}">
                                         <Setter Property="Background" Value="White" />
@@ -238,14 +243,14 @@
                                     </Style>
                                 </TextBox.Style>
                             </TextBox>
-	
-                            <Button MouseEnter="mouse_enter_button2" Click="Click_delete_patient_from_file" Name="buton_2" Width="95" HorizontalAlignment="Right" Margin="0,19,55,51">sterge pacient
+
+                            <Button MouseEnter="mouse_enter_button2" Click="Click_delete_patient_from_file" Name="buton_2" Width="95" HorizontalAlignment="Right" Margin="0,-51,91,121">sterge pacient
                                 <Button.ToolTip>
                                     <ToolTip>! daca apesi acest buton o sa se stearga din databse
                             orice field ce contine cuvantul introdus in textbox!</ToolTip>
                                 </Button.ToolTip>
                             </Button>
-                            <ListBox Name="listbox_patients_to_be_deleted" HorizontalAlignment="Left" Height="161" Margin="14,55,0,0" VerticalAlignment="Top" Width="228" SelectionChanged="selectie_o_linie_din_patient_listbox_to_delete" >
+                            <ListBox Name="listbox_patients_to_be_deleted" HorizontalAlignment="Left" Height="165" Margin="-37,-9,-33,-49" VerticalAlignment="Top" Width="367" SelectionChanged="selectie_o_linie_din_patient_listbox_to_delete" >
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -255,14 +260,14 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
 
-                            
+
                         </Grid>
                     </GroupBox>
 
-                    <TextBlock Name="textblock_1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="664" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,0,0,90"></TextBlock>
-                    <TextBlock Name="action_window" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="365" Margin="0,0,142,89" Background="BurlyWood" ScrollViewer.VerticalScrollBarVisibility="Visible" ></TextBlock>
+                    <TextBlock Name="textblock_1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="664" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,0,0,90" Grid.ColumnSpan="2"></TextBlock>
+                    <TextBlock Name="action_window" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="365" Margin="0,0,142,89" Background="BurlyWood" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" ></TextBlock>
 
-                    <GroupBox Header="search patients" Margin="400,25,322,693">
+                    <GroupBox Header="search patients" Margin="351,25,322,693" Grid.Column="1">
                         <Grid Width="452">
                             <Button Content="Search nr of matches" HorizontalAlignment="Right" Margin="0,11,192,184" Name="button_search" Width="127" Click="button_search_click"  />
                             <TextBox FontSize="14" Height="26" HorizontalAlignment="Left" Margin="20,12,0,184" Name="textBox_search" Text="Search word" VerticalAlignment="Center" Width="108" />
@@ -277,7 +282,7 @@
 
 
                     <!--TextBlock Background="BlanchedAlmond" Height="11" HorizontalAlignment="Left" Margin="-11,412,0,0" Name="textBlock4" VerticalAlignment="Top" Width="1183" /-->
-                    <GroupBox Header="fast search" Margin="351,309,510,557">
+                    <GroupBox Header="fast search" Margin="383,269,429,597" Grid.Column="1">
                         <Grid>
                             <TextBox FontSize="14" Height="40" HorizontalAlignment="Left" Margin="6,20,0,13" Name="textBox1" Text="fast search" VerticalAlignment="Center" Width="173" />
                             <Button Content="search patient" Height="40" HorizontalAlignment="Left" Margin="185,20,0,13" Name="button1" Width="109" />

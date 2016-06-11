@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WpfApplication2.exe" size="137728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WpfApplication2.exe" size="141312">
       <assemblyIdentity name="WpfApplication2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>d5MP0NajZlh9ByAe0Zc6KO4tn+OJsThrWaf245g4F58=</dsig:DigestValue>
+        <dsig:DigestValue>oqbKPAtTx1yMDDhyBb2XMBjVg0NnX9PXerOAJG7/p4Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

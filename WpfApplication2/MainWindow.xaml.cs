@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Resources;
+using System.Net.Mail;
 
 
 
@@ -1704,6 +1705,36 @@ namespace WpfApplication2
             }
         }
 
+        private void send_e_mail_with_attachments(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                mail.To.Add("narcis.scirlatache@gmail.com");
+                mail.Subject = "Test Mail - 2";
+                mail.Body = "mail with attachment";
+
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
+                mail.Attachments.Add(attachment);
+                attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                mail.Attachments.Add(attachment);
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
+                MessageBox.Show("Mail sent with success! ;)");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        
     }
 }
 
