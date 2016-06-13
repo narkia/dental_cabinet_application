@@ -37,6 +37,7 @@ namespace WpfApplication2
         string path = @"MyPatientsList.txt";
         string path1 = @"MyAppointmentList.txt";
         string path_temporary_file = @"MyTemporaryFile.txt";
+        string path_treatments_file = @"MyTreatmentsFile.txt";
         string path_medications = @"MyMedicationList1.txt";
         string mesaj = " ";
         string search_text = "";
@@ -1707,34 +1708,140 @@ namespace WpfApplication2
 
         private void send_e_mail_with_attachments(object sender, RoutedEventArgs e)
         {
-            try
+                        
+            if (File.Exists(path))
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("narcis.scirlatache@gmail.com");
-                mail.To.Add("narcis.scirlatache@gmail.com");
-                mail.Subject = "dental application - patient, appointments, treatments, medication lists";
-                mail.Body = "mail with attachments.. in case of losing of files";
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *MyPatientsList* attachments.. in case of losing of files";
 
-                System.Net.Mail.Attachment attachment;
-                attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
-                mail.Attachments.Add(attachment);
-                attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
-                mail.Attachments.Add(attachment);
-                attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
-                mail.Attachments.Add(attachment);
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
-                SmtpServer.EnableSsl = true;
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);
-                MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
+
+            if (File.Exists(path1))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *MyAppointmentList.txt* attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+            if (File.Exists(path_treatments_file))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *Treatments list file* in attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyTreatmentsList.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyTreatmentsFile.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+            if (File.Exists(path_medications))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *Medications list* attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyMedicationList1.txt* found. You have to create it before to send it!", "Attention!");
+            }
+        
+
         }
         
     }
