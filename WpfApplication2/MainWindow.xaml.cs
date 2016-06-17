@@ -1708,11 +1708,7 @@ namespace WpfApplication2
 
         private void send_e_mail_with_attachments(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            
-=======
-                        
->>>>>>> origin/master
+
             if (File.Exists(path))
             {
                 try
@@ -1741,7 +1737,7 @@ namespace WpfApplication2
                 }
             }
             else
-<<<<<<< HEAD
+
             {
                 MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
@@ -1782,7 +1778,6 @@ namespace WpfApplication2
                 MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
             }
 
-=======
             {
                 MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
@@ -1823,7 +1818,7 @@ namespace WpfApplication2
                 MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
             }
 
->>>>>>> origin/master
+
             if (File.Exists(path_treatments_file))
             {
                 try
