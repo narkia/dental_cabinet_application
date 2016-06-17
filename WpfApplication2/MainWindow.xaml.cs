@@ -1708,7 +1708,11 @@ namespace WpfApplication2
 
         private void send_e_mail_with_attachments(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             
+=======
+                        
+>>>>>>> origin/master
             if (File.Exists(path))
             {
                 try
@@ -1737,6 +1741,7 @@ namespace WpfApplication2
                 }
             }
             else
+<<<<<<< HEAD
             {
                 MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
@@ -1777,6 +1782,48 @@ namespace WpfApplication2
                 MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
             }
 
+=======
+            {
+                MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+            if (File.Exists(path1))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *MyAppointmentList.txt* attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+>>>>>>> origin/master
             if (File.Exists(path_treatments_file))
             {
                 try
@@ -1840,6 +1887,8 @@ namespace WpfApplication2
             {
                 MessageBox.Show("No such a file *MyMedicationList1.txt* found. You have to create it before to send it!", "Attention!");
             }
+        
+
         }
 
         private void Click_edit_patient_from_file(object sender, RoutedEventArgs e)
