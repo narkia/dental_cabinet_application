@@ -171,7 +171,7 @@
                             </TextBox>
                             <DatePicker Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="193,37,0,0" Name="byrthday_date_datepicker" VerticalAlignment="Top" Width="146" Text="date of birth" >
                                 <DatePicker.ToolTip>
-                                    <ToolTip Content="pick your date of birth"></ToolTip>
+                                    <ToolTip Content="pick date of birth for new patient"></ToolTip>
                                 </DatePicker.ToolTip>
                             </DatePicker>
 
@@ -218,7 +218,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="delete patient" Margin="10,243,799,470" Grid.ColumnSpan="2">
+                    <GroupBox Header="delete patient OR edit patient" Margin="14,284,795,430" Grid.ColumnSpan="2">
                         <Grid Height="107" Width="297">
                             <Grid.Resources>
                                 <VisualBrush x:Key="Patient_name_hint_for_delete" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
@@ -259,6 +259,11 @@
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
+                            <Button Click="Click_edit_patient_from_file" x:Name="buton_edit_patient" Width="95" HorizontalAlignment="Right" Margin="0,-51,-9,121" Content="edit patient info">
+                                <Button.ToolTip>
+                                    <ToolTip Content="! daca apesi acest buton o sa se stearga din databse orice field ce contine cuvantul introdus in textbox!"/>
+                                </Button.ToolTip>
+                            </Button>
 
 
                         </Grid>
@@ -267,7 +272,7 @@
                     <TextBlock Name="textblock_1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Width="664" Background="Beige" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="5,0,0,90" Grid.ColumnSpan="2"></TextBlock>
                     <TextBlock Name="action_window" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Width="365" Margin="0,0,142,89" Background="BurlyWood" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Column="1" ></TextBlock>
 
-                    <GroupBox Header="search patients" Margin="351,25,322,693" Grid.Column="1">
+                    <!--GroupBox Header="search patients" Margin="351,25,322,693" Grid.Column="1">
                         <Grid Width="452">
                             <Button Content="Search nr of matches" HorizontalAlignment="Right" Margin="0,11,192,184" Name="button_search" Width="127" Click="button_search_click"  />
                             <TextBox FontSize="14" Height="26" HorizontalAlignment="Left" Margin="20,12,0,184" Name="textBox_search" Text="Search word" VerticalAlignment="Center" Width="108" />
@@ -276,18 +281,12 @@
                             <TextBox FontSize="14" Height="40" HorizontalAlignment="Left" Margin="20,95,0,86" Name="textBox2_search_all" Text="your word" VerticalAlignment="Center" Width="186" />
                             <Button Click="button2_click_search_all_about" Content="Search all about it" HorizontalAlignment="Right" Margin="0,10,60,185" Name="button2" Width="127" />
                         </Grid>
-                    </GroupBox>
+                    </GroupBox-->
                     <!--TextBlock Background="BlanchedAlmond" Height="413" HorizontalAlignment="Left" Margin="297,0,0,0" Name="textBlock1" VerticalAlignment="Top" Width="12" /-->
                     <!--TextBlock Background="BlanchedAlmond" Height="413" HorizontalAlignment="Left" Margin="677,0,0,0" Name="textBlock3" VerticalAlignment="Top" Width="12" /-->
 
 
                     <!--TextBlock Background="BlanchedAlmond" Height="11" HorizontalAlignment="Left" Margin="-11,412,0,0" Name="textBlock4" VerticalAlignment="Top" Width="1183" /-->
-                    <GroupBox Header="fast search" Margin="383,269,429,597" Grid.Column="1">
-                        <Grid>
-                            <TextBox FontSize="14" Height="40" HorizontalAlignment="Left" Margin="6,20,0,13" Name="textBox1" Text="fast search" VerticalAlignment="Center" Width="173" />
-                            <Button Content="search patient" Height="40" HorizontalAlignment="Left" Margin="185,20,0,13" Name="button1" Width="109" />
-                        </Grid>
-                    </GroupBox>
                 </Grid>
             </TabItem>
 

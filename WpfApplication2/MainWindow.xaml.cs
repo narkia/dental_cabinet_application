@@ -37,6 +37,7 @@ namespace WpfApplication2
         string path = @"MyPatientsList.txt";
         string path1 = @"MyAppointmentList.txt";
         string path_temporary_file = @"MyTemporaryFile.txt";
+        string path_treatments_file = @"MyTreatmentsFile.txt";
         string path_medications = @"MyMedicationList1.txt";
         string mesaj = " ";
         string search_text = "";
@@ -197,19 +198,19 @@ namespace WpfApplication2
 * Description:         search the number of matches for a word in patient database.
 * ***********************************************************************************
 *************************************************************************************/
-        private void button_search_click(object sender, RoutedEventArgs e)
-        {
-            search_text = textBox_search.Text.ToString();
-            int result = search_word(search_text);
-            if (result != 0)
-            {
-                textBlock2.Text = "cuvantul * " + search_text + " *" + " a fost gasit de " + result + " ori.";
-            }
-            else
-            {
-                textBlock2.Text = search_text + " --> nu a fost gasit in fisier! ";
-            }
-        }
+        //private void button_search_click(object sender, RoutedEventArgs e)
+        //{
+        //    search_text = textBox_search.Text.ToString();
+        //    int result = search_word(search_text);
+        //    if (result != 0)
+        //    {
+        //        textBlock2.Text = "cuvantul * " + search_text + " *" + " a fost gasit de " + result + " ori.";
+        //    }
+        //    else
+        //    {
+        //        textBlock2.Text = search_text + " --> nu a fost gasit in fisier! ";
+        //    }
+        //}
 
         private int search_word(string str)
         {
@@ -239,47 +240,47 @@ namespace WpfApplication2
 * Description:         search all lines in patient database and show the results in textblock
 * ***********************************************************************************
 *************************************************************************************/
-        private void button2_click_search_all_about(object sender, RoutedEventArgs e)
-        {
-            search_text = textBox_search.Text.ToString();
-            textBlock2.Text = " ";// +Environment.NewLine;
-            search_all_about_the_word(search_text);
+        //private void button2_click_search_all_about(object sender, RoutedEventArgs e)
+        //{
+        //    search_text = textBox_search.Text.ToString();
+        //    textBlock2.Text = " ";// +Environment.NewLine;
+        //    search_all_about_the_word(search_text);
 
 
-        }
+        //}
 
-        private void search_all_about_the_word(string str)
-        {
-            var vector = new string[10];
-            int i = 0;
-            string tot_textul = " ";
+        //private void search_all_about_the_word(string str)
+        //{
+        //    var vector = new string[10];
+        //    int i = 0;
+        //    string tot_textul = " ";
 
-            System.IO.StreamReader file = new System.IO.StreamReader(path);
-            string line = "";
-            while ((line = file.ReadLine()) != null)
-            {
-                var position = line.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
-                if (position > -1)
-                {
-                    vector[i] = line;
-                    i++;
-                }
-            }
+        //    System.IO.StreamReader file = new System.IO.StreamReader(path);
+        //    string line = "";
+        //    while ((line = file.ReadLine()) != null)
+        //    {
+        //        var position = line.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+        //        if (position > -1)
+        //        {
+        //            vector[i] = line;
+        //            i++;
+        //        }
+        //    }
 
-            if (i == 0)
-            {
-                textBlock2.Text = "nici un pacient care sa aiba acest cuvant in descriere ";
-            }
-            else
-            {
-                while (i >= 0)
-                {
-                    tot_textul = tot_textul + " " + vector[i] + "\n";
-                    i--;
-                }
-                textBlock2.Text = tot_textul;
-            }
-        }
+        //    if (i == 0)
+        //    {
+        //        textBlock2.Text = "nici un pacient care sa aiba acest cuvant in descriere ";
+        //    }
+        //    else
+        //    {
+        //        while (i >= 0)
+        //        {
+        //            tot_textul = tot_textul + " " + vector[i] + "\n";
+        //            i--;
+        //        }
+        //        textBlock2.Text = tot_textul;
+        //    }
+        //}
 
 /*************************************************************************************
 * ***********************************************************************************
@@ -1707,34 +1708,156 @@ namespace WpfApplication2
 
         private void send_e_mail_with_attachments(object sender, RoutedEventArgs e)
         {
-            try
+            
+            if (File.Exists(path))
             {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("narcis.scirlatache@gmail.com");
-                mail.To.Add("narcis.scirlatache@gmail.com");
-                mail.Subject = "dental application - patient, appointments, treatments, medication lists";
-                mail.Body = "mail with attachments.. in case of losing of files";
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *MyPatientsList* attachments.. in case of losing of files";
 
-                System.Net.Mail.Attachment attachment;
-                attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
-                mail.Attachments.Add(attachment);
-                attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
-                mail.Attachments.Add(attachment);
-                attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
-                mail.Attachments.Add(attachment);
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
-                SmtpServer.EnableSsl = true;
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);
-                MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.ToString());
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
+
+            if (File.Exists(path1))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *MyAppointmentList.txt* attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyAppointmentList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyPatientsList.txt");
+                    mail.Attachments.Add(attachment);
+                    attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyAppointmentList.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+            if (File.Exists(path_treatments_file))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *Treatments list file* in attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyTreatmentsList.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyTreatmentsFile.txt* found. You have to create it before to send it!", "Attention!");
+            }
+
+            if (File.Exists(path_medications))
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                    mail.From = new MailAddress("narcis.scirlatache@gmail.com");
+                    mail.To.Add("narcis.scirlatache@gmail.com");
+                    mail.Subject = "dental application - patient, appointments, treatments, medication lists";
+                    mail.Body = "mail with *Medications list* attachments.. in case of losing of files";
+
+                    System.Net.Mail.Attachment attachment;
+                    attachment = new System.Net.Mail.Attachment("MyMedicationList1.txt");
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("narcis.scirlatache", "mavrocordat");
+                    SmtpServer.EnableSsl = true;
+
+                    SmtpServer.Send(mail);
+                    MessageBox.Show("Mail sent with success to narcis.scirlatache@gmail.com! ;)");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such a file *MyMedicationList1.txt* found. You have to create it before to send it!", "Attention!");
+            }
+        }
+
+        private void Click_edit_patient_from_file(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Edit_Patient_Window();           
+            newWindow.RaiseCustomEvent += new EventHandler<CustomEventArgs>(newWindow_RaiseCustomEvent);
+            newWindow.Show();
+        }
+
+        void newWindow_RaiseCustomEvent(object sender, CustomEventArgs e)
+        {
+            this.textBox_patient_adress_street.Text = e.Message.ToString();
+        }
+
+        public void Click_CancelButton_dynamic_edit_patient()
+        {
+            MessageBox.Show("haida de");
+            this.Close();
         }
         
     }

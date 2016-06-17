@@ -15,7 +15,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\!!NARCIS - drive principal\Lucru\project_cab_2015\</PublishUrl>
+    <TargetFrameworkProfile />
+    <PublishUrl>c:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\PUBLISHED_application\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -25,12 +26,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -91,6 +91,9 @@
     </ApplicationDefinition>
     <Compile Include="Appointment.cs" />
     <Compile Include="Appointments.cs" />
+    <Compile Include="Edit_Patient_Window.xaml.cs">
+      <DependentUpon>Edit_Patient_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs" />
     <Compile Include="Medication.cs" />
     <Compile Include="Statistics.cs" />
@@ -98,6 +101,10 @@
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Treatment.cs" />
+    <Page Include="Edit_Patient_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

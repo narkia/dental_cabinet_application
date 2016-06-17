@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApplication2.Edit_Patient_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        mc:Ignorable="d"
+        Title="Edit_Patient_Window" Height="300" Width="300">
+    <Grid>
+        <StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige">
+            <TextBlock Name="TextBlock_Edit_Patient_Window" Background="Bisque" Width="290" Height="40"/>
+            <GroupBox Header="Edit Patient info" Width="250" Height="100" Background="Bisque" BorderBrush="Gray" BorderThickness="3">
+                <TextBox Name="textbox_firstname_edit_patient_window" Width="50" Height="40"/>
+
+            </GroupBox>
+            <Button Name="OK_Btn_Edit_Patient_Window" Height="30" Width="70" Content="OK" Click="Click_OK_Edit_Patient_Window" />
+            <Button Name="Cancel_Btn_Edit_Patient_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Patient_Window" />
+        </StackPanel>
+
+
+    </Grid>
+
+</Window>
