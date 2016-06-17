@@ -29,7 +29,7 @@ namespace WpfApplication2
         private void Click_OK_Edit_Patient_Window(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("am apasat OK");
-            RaiseCustomEvent(this, new CustomEventArgs(textbox_firstname_edit_patient_window.Text));
+            RaiseCustomEvent(this, new CustomEventArgs(txt_box_fname_edit_patient.Text));
             this.Close();
         }
 
