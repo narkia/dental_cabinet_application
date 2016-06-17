@@ -547,6 +547,42 @@ namespace WpfApplication2
             return date_appointment;
         }
 
+                private string func_extract_date_of_birth_for_patient(string line)
+        {
+            string date_appointment = "";
+            int i = 0, j = 0;// k = 0;
+            char[] a = line.ToCharArray();
+            char[] b = new char[10];
+
+            while (a[i] != '/')
+            {
+                if (a[i] == '|')
+                {
+                    j++;
+                }
+
+                if (j == 2)
+                {
+                    b[0] = a[i + 1];
+                    b[1] = a[i + 2];
+                    b[2] = a[i + 3];
+                    b[3] = a[i + 4];
+                    b[4] = a[i + 5];
+                    b[5] = a[i + 6];
+                    b[6] = a[i + 7];
+                    b[7] = a[i + 8];
+                    b[8] = a[i + 9];
+                    j = 3;
+                }
+
+                i++;
+            }
+
+            date_appointment = new string(b);
+
+            return date_appointment;
+        }
+
         public int func_position_of_maxim_value_in_array(int[] vector)
         {
             int pos_array = 0;
@@ -1890,6 +1926,22 @@ namespace WpfApplication2
         {
             var newWindow = new Edit_Patient_Window();           
             newWindow.RaiseCustomEvent += new EventHandler<CustomEventArgs>(newWindow_RaiseCustomEvent);
+            newWindow.TextBlock_Edit_Patient_Window.Text = listbox_patients_to_be_deleted.SelectedItem.ToString();
+            //newWindow.txt_box_lname_edit_patient = 
+            //newWindow.txt_box_fname_edit_patient = 
+            //newWindow.txt_box_street_edit_patient = 
+            //newWindow.txt_box_street_nr_edit_patient = 
+            //newWindow.txt_box_city_edit_patient = 
+            //newWindow.txt_box_country_edit_patient = 
+            var txt =  func_extract_date_of_birth_for_patient(listbox_patients_to_be_deleted.SelectedItem.ToString());
+            var txt_converted = Convert.ToDateTime(txt).ToString("dd/MM/yyyy");
+            newWindow.date_picker_edit_patient.Text = txt_converted;
+            //newWindow.date_picker_edit_patient.Text = func_extract_date_of_birth_for_patient(listbox_patients_to_be_deleted.SelectedItem.ToString());
+
+            
+            newWindow.ShowDialog();
+                        
+
             newWindow.Show();
         }
 
