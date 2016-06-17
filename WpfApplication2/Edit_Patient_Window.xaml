@@ -6,16 +6,28 @@
         xmlns:local="clr-namespace:WpfApplication2"
         mc:Ignorable="d"
         Title="Edit_Patient_Window" Height="300" Width="300">
-    <Grid>
-        <StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige">
-            <TextBlock Name="TextBlock_Edit_Patient_Window" Background="Bisque" Width="290" Height="40"/>
-            <GroupBox Header="Edit Patient info" Width="250" Height="100" Background="Bisque" BorderBrush="Gray" BorderThickness="3">
-                <TextBox Name="textbox_firstname_edit_patient_window" Width="50" Height="40"/>
+    <Grid Background="Beige">
+           <!--StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige"-->
+            <TextBlock Name="TextBlock_Edit_Patient_Window" Background="Bisque" Width="290" Height="40" Margin="0,10,2,220" />
+        
+            <GroupBox Header="Edit Patient info" Background="Bisque" BorderBrush="Gray" BorderThickness="3" Height="135" VerticalAlignment="Top" Margin="-2,51,2,0" RenderTransformOrigin="0.476,0.541" >
+            <Grid>
+                <TextBox  Name="txt_box_fname_edit_patient"  Height="28"    Width="73" Margin="96,10,111,75"/>
+                <TextBox  Name="txt_box_lname_edit_patient"  Height="28"     Width="80" Margin="10,10,190,75"/>
+                <TextBox  Name="txt_box_country_edit_patient"  Height="28" Margin="96,43,111,42" RenderTransformOrigin="0.984,0.536"/>
+                <TextBox  Name="txt_box_city_edit_patient"  Height="28" Margin="10,43,190,42"/>
+                <TextBox  Name="txt_box_street_edit_patient"  Height="28" Margin="174,10,45,75"/>
+                <TextBox  Name="txt_box_street_nr_edit_patient"  Height="28" Margin="240,10,5,75"/>
+                <DatePicker Name="date_picker_edit_patient" HorizontalAlignment="Left" Height="28" Margin="174,43,0,0" VerticalAlignment="Top" Width="101"/>
 
+            </Grid>
             </GroupBox>
-            <Button Name="OK_Btn_Edit_Patient_Window" Height="30" Width="70" Content="OK" Click="Click_OK_Edit_Patient_Window" />
-            <Button Name="Cancel_Btn_Edit_Patient_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Patient_Window" />
-        </StackPanel>
+        
+            <Button x:Name="OK_Btn_Edit_Patient_Window" Height="30" Width="70" Content="OK" Click="Click_OK_Edit_Patient_Window" Margin="21,190,201,50" />
+            <Button x:Name="Cancel_Btn_Edit_Patient_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Patient_Window"  Margin="97,191,125,49" >
+                
+            </Button>
+        <!--/StackPanel-->
 
 
     </Grid>
