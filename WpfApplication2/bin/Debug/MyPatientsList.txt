@@ -7,9 +7,9 @@ flavius | scirlatache | 5/29/2016 | tractoruluui | 12 | iasi | romania
 gogo | trancard | 5/29/2016 | bivolilor | 12 | iasi | romania
 trica | trancard | 5/29/2016 | bivolilor | 12 | iasi | romania
 abalasei | trancard | 5/29/2016 | bivolilor | 12 | iasi | romania
-rujeola | trancard | 5/29/2016 | bivolilor | 12 | iasi | romania
 florica | glodeni | 5/30/2016 | caramidariei | 57 | iasi | romania
 giulia | glodeni | 5/30/2016 | caramidariei | 57 | iasi | romania
 ricardo | glodeni | 5/30/2016 | caramidariei | 57 | iasi | romania
+ |  |  |  |  |  | 
  |  |  |  |  |  | 
  |  |  |  |  |  | 

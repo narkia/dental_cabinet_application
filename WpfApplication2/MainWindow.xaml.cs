@@ -1942,7 +1942,7 @@ namespace WpfApplication2
             newWindow.ShowDialog();
                         
 
-            newWindow.Show();
+            //newWindow.Show();
         }
 
         void newWindow_RaiseCustomEvent(object sender, CustomEventArgs e)

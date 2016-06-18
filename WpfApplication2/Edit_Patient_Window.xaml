@@ -5,28 +5,145 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication2"
         mc:Ignorable="d"
-        Title="Edit_Patient_Window" Height="300" Width="300">
+        Title="Edit_Patient_Window" Height="300" Width="329.316">
     <Grid Background="Beige">
-           <!--StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige"-->
-            <TextBlock Name="TextBlock_Edit_Patient_Window" Background="Bisque" Width="290" Height="40" Margin="0,10,2,220" />
-        
-            <GroupBox Header="Edit Patient info" Background="Bisque" BorderBrush="Gray" BorderThickness="3" Height="135" VerticalAlignment="Top" Margin="-2,51,2,0" RenderTransformOrigin="0.476,0.541" >
+        <!--StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige"-->
+        <TextBlock Name="TextBlock_Edit_Patient_Window" Background="Bisque" Height="40" Margin="0,10,10,220" />
+
+        <GroupBox Header="Edit Patient info" Background="Bisque" BorderBrush="Gray" BorderThickness="3" Height="135" VerticalAlignment="Top" Margin="-2,51,2,0" RenderTransformOrigin="0.476,0.541" >
             <Grid>
-                <TextBox  Name="txt_box_fname_edit_patient"  Height="28"    Width="73" Margin="96,10,111,75"/>
-                <TextBox  Name="txt_box_lname_edit_patient"  Height="28"     Width="80" Margin="10,10,190,75"/>
-                <TextBox  Name="txt_box_country_edit_patient"  Height="28" Margin="96,43,111,42" RenderTransformOrigin="0.984,0.536"/>
-                <TextBox  Name="txt_box_city_edit_patient"  Height="28" Margin="10,43,190,42"/>
-                <TextBox  Name="txt_box_street_edit_patient"  Height="28" Margin="174,10,45,75"/>
-                <TextBox  Name="txt_box_street_nr_edit_patient"  Height="28" Margin="240,10,5,75"/>
-                <DatePicker Name="date_picker_edit_patient" HorizontalAlignment="Left" Height="28" Margin="174,43,0,0" VerticalAlignment="Top" Width="101"/>
+                <Grid.Resources>
+                    <VisualBrush x:Key="Patient_lastname_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Lastname" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                    <VisualBrush x:Key="Patient_firstname_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Firstname" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                    <VisualBrush x:Key="Patient_street_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Street" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_streetNr_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Nr" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_city_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="City" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_country_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Country" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+
+                </Grid.Resources>
+
+                <TextBox Name="txt_box_fname_edit_patient"  Height="28" Margin="106,10,103,75">
+
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_fname_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_firstname_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox  Name="txt_box_lname_edit_patient"  Height="28" Margin="5,10,208,75">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_lname_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_lastname_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox Name="txt_box_country_edit_patient"  Height="28" Margin="76,43,149,42" RenderTransformOrigin="0.984,0.536">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_country_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_country_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox Name="txt_box_city_edit_patient"  Height="28" Margin="10,43,251,42">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_city_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_city_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox Name="txt_box_street_edit_patient"  Height="28" Margin="206,10,45,75">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_street_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_street_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox Name="txt_box_street_nr_edit_patient"  Height="28" Margin="269,9,10,76">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_street_nr_edit_patient,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_streetNr_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <DatePicker Name="date_picker_edit_patient" HorizontalAlignment="Left" Height="28" Margin="188,42,0,0" VerticalAlignment="Top" Width="111"/>
 
             </Grid>
-            </GroupBox>
-        
-            <Button x:Name="OK_Btn_Edit_Patient_Window" Height="30" Width="70" Content="OK" Click="Click_OK_Edit_Patient_Window" Margin="21,190,201,50" />
-            <Button x:Name="Cancel_Btn_Edit_Patient_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Patient_Window"  Margin="97,191,125,49" >
-                
-            </Button>
+        </GroupBox>
+
+        <Button x:Name="OK_Btn_Edit_Patient_Window" Height="30" Content="Save and Exit" Click="Click_OK_Edit_Patient_Window" Margin="21,190,191,50" />
+        <Button x:Name="Cancel_Btn_Edit_Patient_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Patient_Window"  Margin="135,190,116,50" >
+
+        </Button>
         <!--/StackPanel-->
 
 
