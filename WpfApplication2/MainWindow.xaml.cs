@@ -649,13 +649,87 @@ namespace WpfApplication2
 
         private void click_delete_treatment(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            if (File.Exists(path_treatments_file))
+            {
+                if (listbox_treatments_to_be_deleted.HasItems)
+                {
+                    string item_selectat_din_listbox = listbox_treatments_to_be_deleted.SelectedItem.ToString();
+                    int index_de_sters = listbox_treatments_to_be_deleted.SelectedIndex;
+
+                    //aici stergem pe bune din fisier..
+                    string path_temporary_file = System.IO.Path.GetTempFileName();
+                    System.IO.StreamReader file = new System.IO.StreamReader(path_treatments_file);
+                    System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
+                    string line = "";
+                    while ((line = file.ReadLine()) != null)
+                    {
+
+                        var position = line.IndexOf(item_selectat_din_listbox, StringComparison.InvariantCultureIgnoreCase);
+                        if (position > -1)
+                        {
+                            // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
+                            line = "asa da - ceva am gasit";
+                        }
+                        else
+                        {
+                            //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
+                            file_temporary.WriteLine(line);
+                        }
+                    }
+
+                    file.Close();
+                    file_temporary.Close();
+                    File.Delete(path_treatments_file);
+                    File.Move(path_temporary_file, path_treatments_file);
+
+                    //la final vreau sa si sterg itemul selectat din listbox
+
+                    listbox_appointments_to_be_deleted.Items.RemoveAt(index_de_sters);
+                }
+                else
+                {
+                    MessageBox.Show("You must search an treatment first! After that you can delete it!", "Attention!");
+                }
+            }
+            else
+            {
+                MessageBox.Show(" There is no treatment set in database yet. You have nothing to delete!", "Atention!");
+            }
+
         }
 
-        private void click_view_treatments(object sender, RoutedEventArgs e)
+       
+
+        /*************************************************************************************
+        * ***********************************************************************************
+        * Function name:       button_write_all_appointments_in_textbox()
+        * Type:                void()
+        * Input parameters:    no  
+        * Output parameters:   no
+        * Description:         gets all of the booked appointments and shows them in a textblock... for development purpose. 
+        * ***********************************************************************************
+        *************************************************************************************/
+        private void button_write_all_a_in_textbox(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            if (File.Exists(path1))
+            {
+                write_appointements_from_file_to_textblock();
+            }
+            else
+            {
+                MessageBox.Show("There is no appointment set in database. Nothing to show yet!", "Atention!");
+            }
+
+
         }
+
+        private void write_treatments_from_file_to_textblock()
+        {
+            string readText = File.ReadAllText(path_treatments_file);
+            all_treatments_textBlock.Text = readText;
+
+        }
+
 
         private void click_delete_appointment_from_database(object sender, RoutedEventArgs e)
         {
@@ -1941,7 +2015,7 @@ namespace WpfApplication2
             
             newWindow.ShowDialog();
                         
-
+            
             //newWindow.Show();
         }
 
@@ -1955,7 +2029,107 @@ namespace WpfApplication2
             MessageBox.Show("haida de");
             this.Close();
         }
-        
+
+        private void Click_edit_appointment_from_file(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Edit_Appointments_Window();           
+            //newWindow.RaiseCustomEvent += new EventHandler<CustomEventArgs>(newWindow_RaiseCustomEvent);
+            newWindow.TextBlock_Edit_Appointment_Window.Text = listbox_appointments_to_be_deleted.SelectedItem.ToString();
+            //newWindow.txt_box_lname_edit_patient = 
+            //newWindow.txt_box_fname_edit_patient = 
+            //newWindow.txt_box_street_edit_patient = 
+            //newWindow.txt_box_street_nr_edit_patient = 
+            //newWindow.txt_box_city_edit_patient = 
+            //newWindow.txt_box_country_edit_patient = 
+            //var txt =  func_extract_date_of_birth_for_patient(listbox_patients_to_be_deleted.SelectedItem.ToString());
+            //var txt_converted = Convert.ToDateTime(txt).ToString("dd/MM/yyyy");
+            //newWindow.date_picker_edit_appointment.Text = txt_converted;
+            //newWindow.date_picker_edit_patient.Text = func_extract_date_of_birth_for_patient(listbox_patients_to_be_deleted.SelectedItem.ToString());
+
+            
+            newWindow.ShowDialog();
+        }
+
+        private void click_edit_treatment(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_add_new_treatment(object sender, RoutedEventArgs e)
+        {
+            add_new_treatment();
+        }
+        private void add_new_treatment()
+        {
+
+            // This text is added only once to the file. 
+            if (!File.Exists(path_treatments_file))
+            {
+                // Create a file to write to. 
+                string createText = "_________________________________________________________________________" + Environment.NewLine;
+                // File.WriteAllText(path1, createText);
+                string createText1 = "Treatment name" + Environment.NewLine;
+                //File.WriteAllText(path1, createText1);
+                string createText2 = "_________________________________________________________________________" + Environment.NewLine;
+                string allText = createText + createText1 + createText2;
+                File.WriteAllText(path_treatments_file, allText);
+            }
+
+            string name_treatment = textBox_add_treatment.Text.ToString()+ Environment.NewLine;
+            if (name_treatment != "")
+            {
+                File.AppendAllText(path_treatments_file, name_treatment);
+                //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
+                MessageBox.Show(" new treatment * " + name_treatment + " * was added!", "Correct!");
+            }
+            else
+            {
+                MessageBox.Show(" no treatment to be added", "Wrong!");
+            }
+        }
+
+        private void button_click_view_treatments(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(path_treatments_file))
+            {
+                write_treatments_from_file_to_textblock();
+            }
+            else
+            {
+                MessageBox.Show("There is no treatment set in database. Nothing to show yet!", "Atention!");
+            }
+        }
+
+        private void click_view_medications(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void keyUP_name_search_treatments(object sender, KeyEventArgs e)
+        {
+            if (File.Exists(path_treatments_file))
+            {
+                List<string> lines = new List<string>();
+                var treatment_name = delete_treatment_textBox.Text.ToString();
+
+                //delete the listbox complete
+                listbox_treatments_to_be_deleted.Items.Clear();
+                                
+                if (treatment_name != "")
+                {               
+                    var toata_cautarea = func_get_all_lines_with_treatment_name_in_list(treatment_name);
+                    foreach (var item in toata_cautarea)
+                    {
+                        listbox_treatments_to_be_deleted.Items.Add(item);
+                        listbox_treatments_to_be_deleted.Background = Brushes.LightPink;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No treatments in database yet. Nothing to search for!", "Attention");
+            }
+        }
     }
 }
 

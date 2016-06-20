@@ -41,3 +41,5 @@ C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabin
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\bin\Debug\WpfApplication2.exe.config
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\Edit_Patient_Window.g.cs
 C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\Edit_Patient_Window.baml
+C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\Edit_Appointments_Window.g.cs
+C:\!!NARCIS - drive principal\GitHub_Repositories\Stoma_application\dental_cabinet_application\WpfApplication2\obj\Debug\Edit_Appointments_Window.baml

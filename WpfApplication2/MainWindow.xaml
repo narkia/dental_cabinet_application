@@ -261,7 +261,7 @@
                             </ListBox>
                             <Button Click="Click_edit_patient_from_file" x:Name="buton_edit_patient" Width="95" HorizontalAlignment="Right" Margin="0,-51,-9,121" Content="edit patient info">
                                 <Button.ToolTip>
-                                    <ToolTip Content="! daca apesi acest buton o sa se stearga din databse orice field ce contine cuvantul introdus in textbox!"/>
+                                    <ToolTip Content="! this button edit info for selected patient!"/>
                                 </Button.ToolTip>
                             </Button>
 
@@ -416,6 +416,11 @@
                             </Grid.RowDefinitions>
 
                             <Button Click="click_delete_appointment_from_database" Content="delete appointment" Height="26" HorizontalAlignment="Left" Margin="0,42,0,0" Name="button27" VerticalAlignment="Top" Width="122" Grid.Row="1" />
+                            <Button Click="Click_edit_appointment_from_file" x:Name="buton_edit_appointment" Width="130" HorizontalAlignment="Right" Margin="0,42,103,25" Content="edit appointment info" Grid.Row="1" RenderTransformOrigin="0.221,-0.444">
+                                <Button.ToolTip>
+                                    <ToolTip Content="! this button edit info for selected patient!"/>
+                                </Button.ToolTip>
+                            </Button>
                             <TextBox Height="28" HorizontalAlignment="Left" Margin="6,16,0,0" Name="appointment_last_name_delete_textBox" VerticalAlignment="Top" Width="101" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" KeyUp="keyUP_lastname_focus_search_appointments1">
 
                                 <TextBox.Style>
@@ -467,36 +472,79 @@
             </TabItem>
             <TabItem Name="tab4" Header="Treatments" TabIndex="4" MouseUp="treatments_tab_mouseup" >
                 <Grid Background="#FF936870">
+                    <Grid.Resources>
+                        <VisualBrush x:Key="treatment_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                            <VisualBrush.Visual>
+                                <Grid HorizontalAlignment="Center">
+                                    <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="treatment name" Background="White" />
+                                </Grid>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Grid.Resources>
+
                     <Label Content="pagina cu tratamente" Height="25" HorizontalAlignment="Left" Margin="5,3,0,0" Name="label_tratamente" VerticalAlignment="Top" Width="200" />
-                    <GroupBox Header="add treatment" Margin="22,53,764,663">
+                    <GroupBox Header="add treatment" Margin="22,53,764,723">
                         <Grid Height="115" Width="265">
-                            <Button Click="button_set_new_treatment" Content="set appointments for patient" Height="26" HorizontalAlignment="Left" Margin="6,83,0,0" Name="button8" VerticalAlignment="Top" Width="213" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox2" Text="Last name" VerticalAlignment="Top" Width="97" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,44,0,0" Name="textBox3" Text="dd.mm.yyyy" VerticalAlignment="Top" Width="97" />
-                            <TextBox Height="32" Margin="165,44,46,0" Name="textBox4" Text="hh:mm" VerticalAlignment="Top">
-                                <TextBox.ToolTip>
-                                    <ToolTip Content="! start time of appointment in following format--&gt; hh:mm !" />
-                                </TextBox.ToolTip>
-                            </TextBox>
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="109,6,0,0" Name="textBox5" Text="First name" VerticalAlignment="Top" Width="110" />
-                            <TextBox Height="32" HorizontalAlignment="Right" Margin="0,44,106,0" Name="textBox6" Text="hh:mm" VerticalAlignment="Top" Width="50">
-                                <TextBox.ToolTip>
-                                    <ToolTip Content="! end time of appointment in following format--&gt; hh:mm !" />
-                                </TextBox.ToolTip>
+                            <Button Click="button_add_new_treatment" Content="add treatment for clinique" Height="26" HorizontalAlignment="Left" Margin="6,37,0,0" Name="add_treatment_button" VerticalAlignment="Top" Width="213" />
+                            <TextBox Height="26" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox_add_treatment" VerticalAlignment="Top" Width="158" >
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=textBox_add_treatment,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource treatment_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
                             </TextBox>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="delete treatment" Margin="371,53,416,719">
+                    <GroupBox Header="delete treatment" Margin="308,53,408,628">
                         <Grid Height="78" Width="265">
-                            <Button Click="click_delete_treatment" Content="delete treatment from database" Height="26" HorizontalAlignment="Left" Margin="6,42,0,0" Name="button9" VerticalAlignment="Top" Width="181" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="delete_treatment_textBox" Text="treatment name" VerticalAlignment="Top" Width="181" />
+                            <Grid.Resources>
+                                <VisualBrush x:Key="treatment_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                                    <VisualBrush.Visual>
+                                        <Grid HorizontalAlignment="Center">
+                                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="treatment name" Background="White" />
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="19*"/>
+                                <RowDefinition Height="20*"/>
+                            </Grid.RowDefinitions>
+
+                            <ListBox Name="listbox_treatments_to_be_deleted" HorizontalAlignment="Left" Height="85" Margin="-32,-7,-29,0" VerticalAlignment="Top" Width="326" SelectionChanged="selectie_o_linie_din_listbox" Grid.RowSpan="2" >
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                            <Button Click="click_edit_treatment" Content="edit treatment" Height="26" HorizontalAlignment="Left" Margin="154,45,0,-31" Name="delete_treatment" VerticalAlignment="Top" Width="101" Grid.Row="1" />
+                            <Button Click="click_delete_treatment" Content="delete treatment from database" Height="26" HorizontalAlignment="Left" Margin="-32,45,0,-31" Name="edit_treatment" VerticalAlignment="Top" Width="181" Grid.Row="1" />
+                            <TextBox Height="22" HorizontalAlignment="Left" Margin="-32,-34,0,0" Name="delete_treatment_textBox" VerticalAlignment="Top" Width="154" KeyUp="keyUP_name_search_treatments" >
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Background" Value="White" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=delete_treatment_textBox,Path=Text}" Value="" >
+                                                <Setter Property="Background" Value="{StaticResource treatment_name_hint}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="important info treatments" Margin="371,184,416,548">
+                    <GroupBox Header="important info treatments" Margin="22,194,835,611">
                         <Grid Height="115" Width="265">
-                            <Button Click="click_view_treatments" Content="show treatments from database" Height="26" HorizontalAlignment="Left" Margin="6,56,0,0" Name="button10" VerticalAlignment="Top" Width="179" />
-                            <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="search_treatment_textBox" Text="treatment name" VerticalAlignment="Top" Width="97" />
-                            <Button Content="search treatment" Height="32" HorizontalAlignment="Left" Margin="109,6,0,0" Name="button11" VerticalAlignment="Top" Width="147" />
+                            <Button Click="button_click_view_treatments" Content="show treatments from database" Height="26" HorizontalAlignment="Left" Margin="0,10,0,0" Name="button10" VerticalAlignment="Top" Width="179" />
                         </Grid>
                     </GroupBox>
                     <TextBlock Background="Beige" HorizontalAlignment="Left" Margin="54,0,0,1" Name="all_treatments_textBlock" ScrollViewer.VerticalScrollBarVisibility="Auto" Text="see here all the treatments available in our dental clinic" VerticalAlignment="Bottom" Width="361" />
@@ -667,7 +715,7 @@
                     </GroupBox>
                     <GroupBox Header="important info medications" Margin="10,210,779,507">
                         <Grid Height="115" Width="265">
-                            <Button Click="click_view_treatments" Content="show treatments from database" Height="26" HorizontalAlignment="Left" Margin="6,56,0,0" Name="button14" VerticalAlignment="Top" Width="179" />
+                            <Button Click="click_view_medications" Content="show medications from database" Height="26" HorizontalAlignment="Left" Margin="6,89,0,0" Name="button14" VerticalAlignment="Top" Width="179" />
                             <TextBox Height="32" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox13" Text="treatment name" VerticalAlignment="Top" Width="97" />
                             <Button Content="search treatment" Height="32" HorizontalAlignment="Left" Margin="109,6,0,0" Name="button15" VerticalAlignment="Top" Width="147" />
                         </Grid>

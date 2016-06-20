@@ -91,6 +91,9 @@
     </ApplicationDefinition>
     <Compile Include="Appointment.cs" />
     <Compile Include="Appointments.cs" />
+    <Compile Include="Edit_Appointments_Window.xaml.cs">
+      <DependentUpon>Edit_Appointments_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Edit_Patient_Window.xaml.cs">
       <DependentUpon>Edit_Patient_Window.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <DependentUpon>Statistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="Treatment.cs" />
+    <Page Include="Edit_Appointments_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Edit_Patient_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

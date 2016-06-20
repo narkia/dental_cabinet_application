@@ -1,0 +1,120 @@
+﻿<Window x:Class="WpfApplication2.Edit_Appointments_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        mc:Ignorable="d"
+        Title="Edit_Appointments_Window" Height="300" Width="386.765">
+    <Grid Background="Beige">
+        <!--StackPanel Name="StackPanel_Edit_Patient_Window" Background="Beige"-->
+        <TextBlock Name="TextBlock_Edit_Appointment_Window" Background="Bisque" Height="40" Margin="0,10,10,220" />
+
+        <GroupBox Header="Edit Patient info" Background="Bisque" BorderBrush="Gray" BorderThickness="3" Height="135" VerticalAlignment="Top" Margin="-2,51,2,0" RenderTransformOrigin="0.476,0.541" >
+            <Grid>
+                <Grid.Resources>
+                    <VisualBrush x:Key="Patient_lastname_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Lastname" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                    <VisualBrush x:Key="Patient_firstname_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Firstname" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                    <VisualBrush x:Key="Patient_street_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Street" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_streetNr_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Nr" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_city_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="City" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Patient_country_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Country" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+
+                </Grid.Resources>
+
+                <TextBox Name="txt_box_fname_edit_appointment"  Height="28" Margin="109,10,159,75">
+
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_fname_edit_appointment,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_firstname_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox  Name="txt_box_lname_edit_appointment"  Height="28" Margin="10,9,263,76">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txt_box_lname_edit_appointment,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Patient_lastname_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <DatePicker Name="date_picker_edit_appointment" HorizontalAlignment="Left" Height="28" Margin="10,74,0,0" VerticalAlignment="Top" Width="111"/>
+                <ComboBox Name="Pick_start_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="124,74,0,0" VerticalAlignment="Top" Width="68" Loaded="Pick_start_hour_appointment_Loaded_edit" SelectionChanged="Pick_start_hour_appointment_SelectionChanged_edit" MouseLeave="clear_colors_notification_start_time_combobox_edit" >
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            ! start time of appointment in following format--> hh:mm !
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <ComboBox x:Name="Pick_stop_hour_appointment" HorizontalAlignment="Left" Height="29" Margin="197,74,0,0" VerticalAlignment="Top" Width="62" Loaded="Pick_stop_hour_appointment_Loaded_edit" SelectionChanged="Pick_stop_hour_appointment_SelectionChanged_edit" MouseLeave="clear_colors_notification_stop_time_combobox_edit">
+                    <ComboBox.ToolTip>
+                        <ToolTip>
+                            ! stop time of appointment in following format--> hh:mm !
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+                <Label Content="Start time" HorizontalAlignment="Left" Height="29" Margin="126,40,0,0" VerticalAlignment="Top" Width="66"/>
+                <Label Content="Stop time" HorizontalAlignment="Left" Height="29" Margin="197,40,0,0" VerticalAlignment="Top" Width="62"/>
+                <Label Content="Appointment day" HorizontalAlignment="Left" Height="29" Margin="5,40,0,0" VerticalAlignment="Top" Width="116"/>
+
+            </Grid>
+        </GroupBox>
+
+        <Button x:Name="OK_Btn_Edit_Appointment_Window" Height="30" Content="Save and Exit" Click="Click_OK_Edit_Appointment_Window" Margin="21,190,263,50" />
+        <Button x:Name="Cancel_Btn_Edit_Appointment_Window" Height="30" Width="70" Content="Cancel" Click="Click_Cancel_Edit_Appointment_Window"  Margin="121,190,188,0" VerticalAlignment="Top" >
+
+        </Button>
+        <!--/StackPanel-->
+
+
+    </Grid>
+</Window>
