@@ -684,7 +684,7 @@ namespace WpfApplication2
 
                     //la final vreau sa si sterg itemul selectat din listbox
 
-                    listbox_appointments_to_be_deleted.Items.RemoveAt(index_de_sters);
+                    listbox_treatments_to_be_deleted.Items.RemoveAt(index_de_sters);
                 }
                 else
                 {
