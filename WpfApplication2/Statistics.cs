@@ -26,7 +26,7 @@ namespace WpfApplication2
             const double margin = 10;
             double xmin = margin;
             double xmax = statistics_graph.Width - margin;
-            double ymin = margin;
+            //double ymin = margin;
             double ymax = statistics_graph.Height - margin;
             const double step = 20;
 
@@ -224,13 +224,13 @@ namespace WpfApplication2
         }
         public DateTime[] Appointment_func_extract_array_dates_of_appointments()
         {
-            int res = 0;
+            
             int i = 0;
             DateTime[] vector_dates_appoints = new DateTime[2000];
 
-            //string path1 = @"C:\Users\ScirlatacheN\Documents\Visual Studio 2015\Projects\WpfApplication2\WpfApplication2\MyAppointmentList.txt";
-            string path1 = "MyAppointmentList.txt";
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            
+            string path_appointments = "MyAppointmentList.txt";
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
             int j = 0;
 
@@ -379,7 +379,7 @@ namespace WpfApplication2
             const double margin = 15;
             double xmin = margin1;
             double xmax = statistics_graph.Width - margin1;
-            double ymin = margin1;
+            //double ymin = margin1;
             double ymax = statistics_graph.Height - margin1;
             const double step_x = 40;
             const double step_y = 30;
@@ -507,7 +507,7 @@ namespace WpfApplication2
             const double margin = 15;
             double xmin = margin1;
             double xmax = statistics_graph.Width - margin1;
-            double ymin = margin1;
+            //double ymin = margin1;
             double ymax = statistics_graph.Height - margin1;
             const double step_x = 40;
             const double step_y = 30;
@@ -773,7 +773,7 @@ namespace WpfApplication2
             const double margin = 15;
             double xmin = margin1;
             double xmax = statistics_graph.Width - margin1;
-            double ymin = margin1;
+            //double ymin = margin1;
             double ymax = statistics_graph.Height - margin1;
             const double step_x = 40;
             const double step_y = 30;
@@ -908,7 +908,7 @@ namespace WpfApplication2
             const double margin = 15;
             double xmin = margin1;
             double xmax = statistics_graph.Width - margin1;
-            double ymin = margin1;
+            //double ymin = margin1;
             double ymax = statistics_graph.Height - margin1;
             const double step_x = 40;
             const double step_y = 30;

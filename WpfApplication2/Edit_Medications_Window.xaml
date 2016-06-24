@@ -1,0 +1,172 @@
+﻿<Window x:Class="WpfApplication2.Edit_Medications_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        mc:Ignorable="d"
+        Title="Edit_Medications_Window" Height="300" Width="300">
+    <Grid Background="Beige">
+
+        <TextBlock Name="TextBlock_Edit_Medication_Window" Background="Bisque" Height="40" Margin="0,10,10,220" />
+
+        <GroupBox Header="Edit Medication info" Background="Bisque" BorderBrush="Gray" BorderThickness="3" Height="174" VerticalAlignment="Top" Margin="0,50,0,0" RenderTransformOrigin="0.476,0.541" >
+            <Grid Margin="0,0,0,-41">
+                <Grid.Resources>
+                    
+                    <VisualBrush x:Key="Medication_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Name        " Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Medication_provider_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Provider    " Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Medication_cost_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Cost   " Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Medication_quantity_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Qty" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Medication_manufacturing_date_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <DatePicker FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Mfntg date" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                    <VisualBrush x:Key="Medication_aquisition_date_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                        <VisualBrush.Visual>
+                            <Grid HorizontalAlignment="Center">
+                                <DatePicker FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Aqistn date" Background="White" />
+                            </Grid>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+
+                </Grid.Resources>
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="10,10,0,0" Name="medication_name_textBox"  VerticalAlignment="Top" Width="105" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_name_textBox,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_name_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <TextBox Height="26" HorizontalAlignment="Left" Margin="120,10,0,0" Name="medication_provider_textBox"  VerticalAlignment="Top" Width="102" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_provider_textBox ,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_provider_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+                <TextBox Height="26" Margin="227,10,8,0" Name="medication_cost_textBox" VerticalAlignment="Top" RenderTransformOrigin="0.622,0.438" FontSize="16" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="Black" >
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_cost_textBox,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_cost_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                    <TextBox.ToolTip>
+                        <ToolTip Content="medication cost in RON" />
+                    </TextBox.ToolTip>
+                </TextBox>
+                <DatePicker Name="medication_manufacturing_date_datepicker" HorizontalAlignment="Left" Height="26" Margin="10,41,0,0" VerticalAlignment="Top" Width="105">
+                    <DatePicker.Style>
+                        <Style TargetType="{x:Type DatePicker}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_manufacturing_date_datepicker ,Path=DatePicker.TextChanged}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_manufacturing_date_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DatePicker.Style>
+                    <DatePicker.ToolTip>
+                        <ToolTip Content="insert here the medication date of manufacturing!"/>
+                    </DatePicker.ToolTip>
+                </DatePicker>
+
+                <DatePicker Name="medication_aquisition_date_datepicker" HorizontalAlignment="Left" Height="26" Margin="120,41,0,0" VerticalAlignment="Top" Width="105">
+                    <DatePicker.Style>
+                        <Style TargetType="{x:Type DatePicker}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_manufacturing_date_datepicker ,Path=DatePicker.TextChanged}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_manufacturing_date_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DatePicker.Style>
+
+                    <DatePicker.ToolTip>
+                        <ToolTip Content="insert here the medication date of aquisition!"/>
+                    </DatePicker.ToolTip>
+                </DatePicker>
+                <TextBox Height="26" HorizontalAlignment="Right" Margin="0,41,10,0" Name="medication_quantity_textbox" VerticalAlignment="Top" Width="33" RenderTransformOrigin="8.55,-0.406">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="White" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=medication_quantity_textbox ,Path=Text}" Value="" >
+                                    <Setter Property="Background" Value="{StaticResource Medication_quantity_hint}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                    <TextBox.ToolTip>
+                        <ToolTip Content="medication quantity in number of pieces" />
+                    </TextBox.ToolTip>
+                </TextBox>
+
+                <TextBlock Text="Manufacturing date" Margin="3,70,165,103" FontSize="12" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="LightBlue" />
+                <TextBlock Text="Aquisition date" Margin="120,70,63,103" FontSize="12" FontFamily="SEGOEWP" FontWeight="ExtraBlack" Foreground="LightBlue"/>
+
+
+
+
+
+
+            </Grid>
+        </GroupBox>
+
+        <Button x:Name="OK_Btn_Edit_Medication_Window" Height="30" Content="Save and Exit" Click="Click_OK_Edit_Medication_Window" Margin="10,230,182,10" />
+        <Button x:Name="Cancel_Btn_Edit_Medication_Window" Height="30" Content="Cancel" Click="Click_Cancel_Edit_Medication_Window"  Margin="115,230,78,0" VerticalAlignment="Top" RenderTransformOrigin="1.186,0.233" />
+
+    </Grid>
+</Window>

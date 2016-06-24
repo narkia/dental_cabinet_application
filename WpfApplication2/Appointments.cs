@@ -40,16 +40,16 @@ namespace WpfApplication2
         {
 
             // This text is added only once to the file. 
-            if (!File.Exists(path1))
+            if (!File.Exists(path_appointments))
             {
                 // Create a file to write to. 
                 string createText = "_________________________________________________________________________" + Environment.NewLine;
-                // File.WriteAllText(path1, createText);
+                // File.WriteAllText(path_appointments, createText);
                 string createText1 = "Last name     First Name  |" + "    Date   | Time frame hh:mm --> hh:mm | " + Environment.NewLine;
-                //File.WriteAllText(path1, createText1);
+                //File.WriteAllText(path_appointments, createText1);
                 string createText2 = "_________________________________________________________________________" + Environment.NewLine;
                 string allText = createText + createText1 + createText2;
-                File.WriteAllText(path1, allText);
+                File.WriteAllText(path_appointments, allText);
             }
             
             string name_patient = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString();
@@ -96,7 +96,7 @@ namespace WpfApplication2
                         var a = Convert.ToDateTime(data_appointment).ToString("dd.MM.yyyy");
                         var date_appointments_good_to_write_in_database = a;
                         string appendText = textBox_appointments_patient.Text.ToString() + " " + textbox_firstname_appointment.Text.ToString() + "  |" + date_appointments_good_to_write_in_database /*datepicker_date_appointment.Text.ToString()*/ + "   |" + Pick_start_hour_appointment.Text.ToString() + " --> " + Pick_stop_hour_appointment.Text.ToString() + "|" + Environment.NewLine;
-                        File.AppendAllText(path1, appendText);
+                        File.AppendAllText(path_appointments, appendText);
                         //MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!");
                         MessageBox.Show(" o noua programare pentru pacientul * " + name_patient + " * a fost introdusa!", "Correct!");
     
@@ -175,7 +175,7 @@ namespace WpfApplication2
         *************************************************************************************/
         private void button_write_all_appointments_in_textbox(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 write_appointements_from_file_to_textblock();
             }
@@ -189,7 +189,7 @@ namespace WpfApplication2
 
         private void write_appointements_from_file_to_textblock()
         {
-            string readText = File.ReadAllText(path1);
+            string readText = File.ReadAllText(path_appointments);
             textBlock_all_appointments.Text = readText;
 
         }
@@ -205,7 +205,7 @@ namespace WpfApplication2
         *************************************************************************************/
         private void button_write_appointments_of_today_in_textblock(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 write_appointments_of_today_from_file_to_textblock();
             }
@@ -238,7 +238,7 @@ namespace WpfApplication2
         {
             string result_lines = "";
 
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
@@ -261,7 +261,7 @@ namespace WpfApplication2
 
             int jj = 0;
 
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
@@ -333,6 +333,56 @@ namespace WpfApplication2
             return lista;
         }
 
+        private List<string> func_get_all_lines_with_medication_name_in_list(string namee)
+        {
+
+            List<string> lista = new List<string>();
+
+            int jj = 0;
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path_medications);
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+                if (jj > 2)
+                {
+                    var position = line.IndexOf(namee, StringComparison.InvariantCultureIgnoreCase);
+                    if (position > -1)
+                    {
+                        lista.Add(line);
+
+                    }
+                }
+                jj++;
+            }
+            file.Close();
+            return lista;
+        }
+        private List<string> func_get_all_lines_with_equipment_name_in_list(string namee)
+        {
+
+            List<string> lista = new List<string>();
+
+            int jj = 0;
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path_equipments);
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+                if (jj > 2)
+                {
+                    var position = line.IndexOf(namee, StringComparison.InvariantCultureIgnoreCase);
+                    if (position > -1)
+                    {
+                        lista.Add(line);
+
+                    }
+                }
+                jj++;
+            }
+            file.Close();
+            return lista;
+        }
 
         /*************************************************************************************
         * ***********************************************************************************
@@ -452,7 +502,7 @@ namespace WpfApplication2
         private int func_verify_if_possible_appointment_start_time(string start_time, string stop_time, string date)
         {
             int res = 0;
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
 
             while ((line = file.ReadLine()) != null)
@@ -725,7 +775,7 @@ namespace WpfApplication2
         {
             Boolean res = false;
 
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
 
             while ((line = file.ReadLine()) != null)

@@ -94,8 +94,17 @@
     <Compile Include="Edit_Appointments_Window.xaml.cs">
       <DependentUpon>Edit_Appointments_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Edit_Equipment_Window.xaml.cs">
+      <DependentUpon>Edit_Equipment_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Medications_Window.xaml.cs">
+      <DependentUpon>Edit_Medications_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Edit_Patient_Window.xaml.cs">
       <DependentUpon>Edit_Patient_Window.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Edit_Treatments_Window.xaml.cs">
+      <DependentUpon>Edit_Treatments_Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment.cs" />
     <Compile Include="Medication.cs" />
@@ -108,7 +117,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Edit_Equipment_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Medications_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Edit_Patient_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Edit_Treatments_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

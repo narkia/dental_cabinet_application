@@ -26,7 +26,7 @@ namespace WpfApplication2
         public string stop_hour { get; set; }
 
         //constant
-        string path1 = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyAppointmentList.txt";
+        string path_appointments = @"C:\Users\nars\Documents\visual studio 2015\Projects\WpfApplication2\WpfApplication2\MyAppointmentList.txt";
 
         public Appointment(string lastname, string firstname, DateTime date_of_appointment, string start_hour, string stop_hour)
         {

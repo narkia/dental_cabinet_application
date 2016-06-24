@@ -35,10 +35,11 @@ namespace WpfApplication2
         }
 
         string path = @"MyPatientsList.txt";
-        string path1 = @"MyAppointmentList.txt";
+        string path_appointments = @"MyAppointmentList.txt";
         string path_temporary_file = @"MyTemporaryFile.txt";
         string path_treatments_file = @"MyTreatmentsFile.txt";
         string path_medications = @"MyMedicationList1.txt";
+        string path_equipments = @"MyEquipmentList.txt";
         string mesaj = " ";
         string search_text = "";
         int counter_fields_action_window = 0;
@@ -606,8 +607,8 @@ namespace WpfApplication2
             //string o_data = DateTime.Now.ToString("dd/MM/yyyy");
             var zile_an = new int[365];
             int lineindex = 0;
-            
-            System.IO.StreamReader file = new System.IO.StreamReader(path1);
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
             string line = "";
             while ((line = file.ReadLine()) != null)
             {
@@ -640,11 +641,8 @@ namespace WpfApplication2
 
         private void click_busiest_day_of_the_year(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
-                        var busiest_day_in_database = func_busiest_day_of_the_year();
-
-                      MessageBox.Show("cea mai busy data din istoria cabinetului este --> "+ busiest_day_in_database);
-            //MessageBox.Show("ceva nu merge bine cu datele appointmenturilor....lucreaza la Statistics");
+            var busiest_day_in_database = func_busiest_day_of_the_year();
+            MessageBox.Show("The busiest day in clinique history is --> "+ busiest_day_in_database);
         }
 
         private void click_delete_treatment(object sender, RoutedEventArgs e)
@@ -711,7 +709,7 @@ namespace WpfApplication2
         *************************************************************************************/
         private void button_write_all_a_in_textbox(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 write_appointements_from_file_to_textblock();
             }
@@ -731,9 +729,17 @@ namespace WpfApplication2
         }
 
 
+        private void write_medications_from_file_to_textblock()
+        {
+            string readText = File.ReadAllText(path_medications);
+            all_medications_textBlock.Text = readText;
+
+        }
+
+
         private void click_delete_appointment_from_database(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 if (listbox_appointments_to_be_deleted.HasItems)
                 {
@@ -743,7 +749,7 @@ namespace WpfApplication2
 
                     //aici stergem pe bune din fisier..
                     string path_temporary_file = System.IO.Path.GetTempFileName();
-                    System.IO.StreamReader file = new System.IO.StreamReader(path1);
+                    System.IO.StreamReader file = new System.IO.StreamReader(path_appointments);
                     System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
                     string line = "";
                     while ((line = file.ReadLine()) != null)
@@ -764,8 +770,8 @@ namespace WpfApplication2
 
                     file.Close();
                     file_temporary.Close();
-                    File.Delete(path1);
-                    File.Move(path_temporary_file, path1);
+                    File.Delete(path_appointments);
+                    File.Move(path_temporary_file, path_appointments);
 
                     //la final vreau sa si sterg itemul selectat din listbox
 
@@ -785,12 +791,40 @@ namespace WpfApplication2
 
         private void button_add_new_equipments(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            add_new_equipment();
+        }
+
+        private void add_new_equipment()
+        {
+
+            // This text is added only once to the file. 
+            if (!File.Exists(path_equipments))
+            {
+                // Create a file to write to. 
+                string createText = "____________________________________________________________________________________________________________________________________________________________________________________________________________________________" + Environment.NewLine;
+                // File.WriteAllText(path_appointments, createText);
+                string createText1 = "Serial Number |"+ " Eq. name |" + "  Provider |"+" Size |"+" Weight |"+" Material |"+" Date of manufacturing |"+ " Date of aquisition |"+ " Quantity(pieces) |" + " Price(country(where application is used) currency ) |" + Environment.NewLine;
+                //File.WriteAllText(path_appointments, createText1);
+                string createText2 = "___________________________________________________________________________________________________________________________________________________________________________________________________________________________" + Environment.NewLine;
+                string allText = createText + createText1 + createText2;
+                File.WriteAllText(path_equipments, allText);
+            }
+
+            string name_equipment = textBox_Equipment_Serial_Number.Text.ToString() + " | " + add_new_equipment_name_textBox.Text.ToString() + " | " + textBox_Equipment_Provider.Text.ToString() + " | " + textBox_Equipment_Size.Text.ToString() + " | " + textBox_Equipment_Weight.Text.ToString() + " | " + textBox_Equipment_Material.Text.ToString() + " | " + datepicker_Manufacturing_date_equipment.Text.ToString() + " | " + datepicker_Aquisition_date_equipment.Text.ToString() + " | " + textBox_Equipment_Quantity.Text.ToString() + " | " + textBox_Equipment_Price.Text.ToString() + Environment.NewLine;
+            if (name_equipment != "")
+            {
+                File.AppendAllText(path_equipments, name_equipment);
+                MessageBox.Show(" new equipment * " + add_new_equipment_name_textBox.Text.ToString() + " * was added!", "Correct!");
+            }
+            else
+            {
+                MessageBox.Show(" no equipment to be added", "Wrong!");
+            }
         }
 
         private void click_delete_equipment(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
+            //MessageBox.Show("in curand va fi implementat si acest feature.. putintica rabdare;) ");
         }
 
 
@@ -1180,7 +1214,7 @@ namespace WpfApplication2
                 private void keyUP_lastname_focus_search_appointments(object sender, KeyEventArgs e)
         {
             List<string> lines = new List<string>();
-            int j = 0;
+            
             /* cod bun de folosit !!!!!!! */
             //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
             /******************************************************************************************/
@@ -1275,7 +1309,7 @@ namespace WpfApplication2
         private void KeyUP_firstname_search_appointments(object sender, KeyEventArgs e)
         {
             List<string> lines = new List<string>();
-            int j = 0;
+            
             /* cod bun de folosit !!!!!!! */
             //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
             /******************************************************************************************/
@@ -1369,7 +1403,7 @@ namespace WpfApplication2
         private void KeyUP_date_appointment_search_appointments(object sender, KeyEventArgs e)
         {
             List<string> lines = new List<string>();
-            int j = 0;
+            
             /* cod bun de folosit !!!!!!! */
             //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
             /******************************************************************************************/
@@ -1462,11 +1496,11 @@ namespace WpfApplication2
         
                 private void keyUP_lastname_focus_search_appointments1(object sender, KeyEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
 
                 List<string> lines = new List<string>();
-                int j = 0;
+                
                 /* cod bun de folosit !!!!!!! */
                 //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
                 /******************************************************************************************/
@@ -1564,11 +1598,11 @@ namespace WpfApplication2
 
         private void KeyUP_firstname_search_appointments1(object sender, KeyEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
 
                 List<string> lines = new List<string>();
-                int j = 0;
+                
                 /* cod bun de folosit !!!!!!! */
                 //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
                 /******************************************************************************************/
@@ -1667,11 +1701,11 @@ namespace WpfApplication2
 
         private void KeyUP_date_appointment_search_appointments1(object sender, KeyEventArgs e)
         {
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
 
                 List<string> lines = new List<string>();
-                int j = 0;
+                
                 /* cod bun de folosit !!!!!!! */
                 //aici vreau sa caut lastname sau data si instant sa se populeze listboxul...
                 /******************************************************************************************/
@@ -1852,7 +1886,7 @@ namespace WpfApplication2
                 MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
 
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 try
                 {
@@ -1892,7 +1926,7 @@ namespace WpfApplication2
                 MessageBox.Show("No such a file *MyPatientsList.txt* found. You have to create it before to send it!", "Attention!");
             }
 
-            if (File.Exists(path1))
+            if (File.Exists(path_appointments))
             {
                 try
                 {
@@ -2052,7 +2086,9 @@ namespace WpfApplication2
 
         private void click_edit_treatment(object sender, RoutedEventArgs e)
         {
-
+            var newWindow = new Edit_Treatments_Window();
+            newWindow.TextBlock_Edit_Treatments_Window.Text = listbox_treatments_to_be_deleted.SelectedItem.ToString();
+            newWindow.ShowDialog();
         }
 
         private void button_add_new_treatment(object sender, RoutedEventArgs e)
@@ -2067,9 +2103,9 @@ namespace WpfApplication2
             {
                 // Create a file to write to. 
                 string createText = "_________________________________________________________________________" + Environment.NewLine;
-                // File.WriteAllText(path1, createText);
+                // File.WriteAllText(path_appointments, createText);
                 string createText1 = "Treatment name" + Environment.NewLine;
-                //File.WriteAllText(path1, createText1);
+                //File.WriteAllText(path_appointments, createText1);
                 string createText2 = "_________________________________________________________________________" + Environment.NewLine;
                 string allText = createText + createText1 + createText2;
                 File.WriteAllText(path_treatments_file, allText);
@@ -2102,7 +2138,14 @@ namespace WpfApplication2
 
         private void click_view_medications(object sender, RoutedEventArgs e)
         {
-
+            if (File.Exists(path_medications))
+            {
+                write_medications_from_file_to_textblock();
+            }
+            else
+            {
+                MessageBox.Show("There is no treatment set in database. Nothing to show yet!", "Atention!");
+            }
         }
 
         private void keyUP_name_search_treatments(object sender, KeyEventArgs e)
@@ -2128,6 +2171,125 @@ namespace WpfApplication2
             else
             {
                 MessageBox.Show("No treatments in database yet. Nothing to search for!", "Attention");
+            }
+        }
+        private void click_edit_medication(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Edit_Medications_Window();
+            newWindow.TextBlock_Edit_Medication_Window.Text = ListBox_Medications_to_be_deleted_edited.SelectedItem.ToString();
+            newWindow.ShowDialog();
+        }
+        private void click_delete_medication(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(path_medications))
+            {
+                if (ListBox_Medications_to_be_deleted_edited.HasItems)
+                {
+                    string item_selectat_din_listbox = ListBox_Medications_to_be_deleted_edited.SelectedItem.ToString();
+                    int index_de_sters = ListBox_Medications_to_be_deleted_edited.SelectedIndex;
+
+                    //aici stergem pe bune din fisier..
+                    string path_temporary_file = System.IO.Path.GetTempFileName();
+                    System.IO.StreamReader file = new System.IO.StreamReader(path_medications);
+                    System.IO.StreamWriter file_temporary = new System.IO.StreamWriter(path_temporary_file);
+                    string line = "";
+                    while ((line = file.ReadLine()) != null)
+                    {
+
+                        var position = line.IndexOf(item_selectat_din_listbox, StringComparison.InvariantCultureIgnoreCase);
+                        if (position > -1)
+                        {
+                            // daca data selectata se afla in linie, nu copiem acea linie in fisierul temporar 
+                            line = "asa da - ceva am gasit";
+                        }
+                        else
+                        {
+                            //data selectata nu se gaseste in linia asta, deci linia asta tre sa ramana in fisier
+                            file_temporary.WriteLine(line);
+                        }
+                    }
+
+                    file.Close();
+                    file_temporary.Close();
+                    File.Delete(path_medications);
+                    File.Move(path_temporary_file, path_medications);
+
+                    //la final vreau sa si sterg itemul selectat din listbox
+
+                    ListBox_Medications_to_be_deleted_edited.Items.RemoveAt(index_de_sters);
+                }
+                else
+                {
+                    MessageBox.Show("You must search a medication first! After that you can delete it!", "Attention!");
+                }
+            }
+            else
+            {
+                MessageBox.Show(" There is no medication set in database yet. You have nothing to delete!", "Atention!");
+            }
+        }
+        private void keyUP_name_search_medications(object sender, KeyEventArgs e)
+        {
+            if (File.Exists(path_medications))
+            {
+                List<string> lines = new List<string>();
+                var medication_name = textBox_Medication_Name_EDIT_DELETE.Text.ToString();
+
+                //delete the listbox complete
+                ListBox_Medications_to_be_deleted_edited.Items.Clear();
+
+                if (medication_name != "")
+                {
+                    var toata_cautarea = func_get_all_lines_with_medication_name_in_list(medication_name);
+                    foreach (var item in toata_cautarea)
+                    {
+                        ListBox_Medications_to_be_deleted_edited.Items.Add(item);
+                        ListBox_Medications_to_be_deleted_edited.Background = Brushes.LightPink;
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No medications in database yet. Nothing to search for!", "Attention");
+            }
+        }
+        private void click_edit_equipment(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new Edit_Equipment_Window();
+            newWindow.TextBlock_Edit_Equipments_Window.Text = ListBox_equipments_to_be_deleted_edited.SelectedItem.ToString();
+            newWindow.ShowDialog();
+        }
+        private void keyUP_name_search_equipment(object sender, KeyEventArgs e)
+        {
+            if (File.Exists(path_equipments))
+            {
+                List<string> lines = new List<string>();
+                var equipment_name = equipment_name_delete_edit_textbox.Text.ToString();
+
+                //delete the listbox complete
+                ListBox_equipments_to_be_deleted_edited.Items.Clear();
+
+                if (equipment_name != "")
+                {
+                    var toata_cautarea = func_get_all_lines_with_equipment_name_in_list(equipment_name);
+                    foreach (var item in toata_cautarea)
+                    {
+                        ListBox_equipments_to_be_deleted_edited.Items.Add(item);
+                        ListBox_equipments_to_be_deleted_edited.Background = Brushes.LightPink;
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("No equipments in database yet. Nothing to search for!", "Attention");
             }
         }
     }

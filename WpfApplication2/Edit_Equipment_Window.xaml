@@ -1,0 +1,222 @@
+﻿<Window x:Class="WpfApplication2.Edit_Equipment_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        mc:Ignorable="d"
+        Title="Edit_Equipment_Window" Height="300" Width="300">
+    <Window.Resources>
+
+        <VisualBrush x:Key="Equipment_Size_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+            <VisualBrush.Visual>
+                <Grid HorizontalAlignment="Center">
+                    <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Size  " Background="White" />
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+
+    </Window.Resources>
+    <Grid Background="Beige">
+        <TextBlock Name="TextBlock_Edit_Equipments_Window" Background="Bisque" Height="40" Margin="0,10,10,220" />
+
+        <GroupBox Header="add equipments" Margin="10,33,712,602"/>
+
+        <Button x:Name="OK_Btn_Edit_Equipment_Window" Height="30" Content="Save and Exit" Click="Click_OK_Edit_Equipment_Window" Margin="10,230,182,10" />
+        <Button x:Name="Cancel_Btn_Edit_Equipment_Window" Height="30" Content="Cancel" Click="Click_Cancel_Edit_Equipment_Window"  Margin="115,230,78,0" VerticalAlignment="Top" RenderTransformOrigin="1.186,0.233" />
+        <Grid Margin="16,27,0,0" Height="172" VerticalAlignment="Top" HorizontalAlignment="Left" Width="275">
+            <Grid.Resources>
+                <VisualBrush x:Key="Equipment_name_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Eq. Name" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_Size_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBlack" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Size  " Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_provider_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Provider" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_cost_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Price  " Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_quantity_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Quantity" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_manufacturing_date_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <DatePicker FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Mfntg date" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_aquisition_date_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <DatePicker FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Aqistn date" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_weight_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Weight" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_Serial_Number_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Serial Nr" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+                <VisualBrush x:Key="Equipment_Material_hint" Stretch="None" AlignmentX="Center" AlignmentY="Center" >
+                    <VisualBrush.Visual>
+                        <Grid HorizontalAlignment="Center">
+                            <TextBlock FontFamily="SEGOEWP"  FontSize="20"   FontWeight="ExtraBold" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="LightGray" FontStyle="Normal" Opacity="1" Text="Material" Background="White" />
+                        </Grid>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+
+
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="-2,24,0,0" x:Name="add_new_equipment_name_textBox" VerticalAlignment="Top" Width="97">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=add_new_equipment_name_textBox}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_name_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="98,0,0,116" x:Name="textBox_Equipment_Size" VerticalAlignment="Bottom" Width="54" Grid.ColumnSpan="2">
+
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Size}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_Size_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="52,0,0,116" x:Name="textBox_Equipment_Material" VerticalAlignment="Bottom" Width="83" RenderTransformOrigin="2.685,0.375" Grid.Column="1">
+
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Material}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_Material_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="0,0,0,79" x:Name="textBox_Equipment_Weight"  VerticalAlignment="Bottom" Width="72" >
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Weight}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_weight_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <DatePicker x:Name="datepicker_Manufacturing_date_equipment" HorizontalAlignment="Left" Height="27" Margin="0,135,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="1.59,0.333"/>
+            <DatePicker x:Name="datepicker_Aquisition_date_equipment"  HorizontalAlignment="Left" Height="27" Margin="110,135,0,0" VerticalAlignment="Top" Width="105" Grid.ColumnSpan="2"/>
+            <TextBox Height="32" HorizontalAlignment="Right" Margin="0,0,134,79" x:Name="textBox_Equipment_Price" VerticalAlignment="Bottom" Width="59" RenderTransformOrigin="-0.105,2.594" Grid.ColumnSpan="2">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Price}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_cost_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="0,0,0,42" x:Name="textBox_Equipment_Serial_Number" VerticalAlignment="Bottom" Width="87" RenderTransformOrigin="-0.105,2.594">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Serial_Number}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_Serial_Number_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="41,0,0,79" x:Name="textBox_Equipment_Quantity" VerticalAlignment="Bottom" Width="83" RenderTransformOrigin="2.685,0.375" Grid.Column="1">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Quantity}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_quantity_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Height="32" HorizontalAlignment="Left" Margin="92,0,0,42" x:Name="textBox_Equipment_Provider" VerticalAlignment="Bottom" Width="82" RenderTransformOrigin="2.685,0.375" Grid.ColumnSpan="2">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="White" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=textBox_Equipment_Provider}" Value="" >
+                                <Setter Property="Background" Value="{StaticResource Equipment_provider_hint}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </Grid>
+    </Grid>
+</Window>
